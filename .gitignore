@@ -1,0 +1,5 @@
+node_modules
+dist
+coverage
+camunda-docs/
+camunda-platform-docs/
