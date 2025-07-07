@@ -3,7 +3,7 @@ const { marked } = require('marked');
 const { readFile, writeFile } = require('node:fs/promises');
 
 // paths relative to CWD
-const MARKDOWN_SRC = './camunda-platform-docs/docs/components/modeler/feel/builtin-functions/*.md';
+const MARKDOWN_SRC = './camunda-docs/docs/components/modeler/feel/builtin-functions/*.md';
 const JSON_DEST = './src/builtins/camunda.json';
 
 glob(MARKDOWN_SRC).then(files => {
