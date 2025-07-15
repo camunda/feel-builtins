@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to [@bpmn-io/feel-editor](https://github.com/bpmn-io/feel-editor) are documented here. We use [semantic versioning](http://semver.org/) for releases.
+All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-builtins) are documented here. We use [semantic versioning](http://semver.org/) for releases.
 
 ## Unreleased
 
