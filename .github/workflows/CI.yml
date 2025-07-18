@@ -1,5 +1,10 @@
 name: CI
-on: [ push, pull_request ]
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+      - cron: '17 2 * * 0' # Every Sunday at 2:17 AM (random time to distribute load)
 jobs:
   build:
     strategy:
@@ -21,5 +26,39 @@ jobs:
         run: npm ci
       - name: Setup project
         uses: bpmn-io/actions/setup@latest
+      - name: Checkout camunda-docs
+        uses: actions/checkout@v4
+        with:
+          repository: camunda/camunda-docs
+          path: camunda-docs
+      - name: Update builtins
+        run: npm run compile-builtins
       - name: All
         run: npm run all
+      - name: Check if files changed
+        id: check_builtins
+        run: |
+          files=$(git status -u --porcelain)
+          if [ -n "$files" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Add comment on PRs
+        if: steps.check_builtins.outputs.changed == 'true' && github.event_name == 'pull_request' && github.event.action == 'opened' && github.event.pull_request.base.ref == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.number }}
+          BODY: |
+            There are changes to the builtin functions that are not part of this PR. Consider if you want to include all changes in this PR or check if there's already a PR that includes these changes.
+        run: gh issue comment "$NUMBER" --body "$BODY"
+      - name: Create PRs automatically
+        if: steps.check_builtins.outputs.changed == 'true' && (github.event_name == 'scheduled' || github.event_name == 'workflow_dispatch')
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'chore: update builtins'
+          branch: update-builtins
+          title: 'Update builtins'
+          body: |
+            :robot: Automated PR to update builtin functions
