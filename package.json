@@ -2,14 +2,40 @@
   "name": "@camunda/feel-builtins",
   "version": "0.0.1",
   "description": "Collection of builtin Camunda extensions for FEEL",
+  "type": "module",
+  "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "all": "run-s lint check-types test",
+    "test": "mocha test/**/*.spec.js",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit",
+    "update-builtins": "run-s pull-docs compile-builtins",
+    "pull-docs": "git -C camunda-docs pull || git clone git@github.com:camunda/camunda-docs.git camunda-docs",
+    "compile-builtins": "node tasks/compileBuiltins.js"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.2.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.19.9",
+    "chai": "^5.2.1",
+    "eslint": "^9.31.0",
+    "eslint-plugin-bpmn-io": "^2.2.0",
+    "glob": "^11.0.3",
+    "marked": "^16.1.1",
+    "mocha": "^11.7.1",
+    "npm-run-all2": "^8.0.0",
+    "typescript": "^5.8.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "lib"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/camunda/feel-builtins.git"
