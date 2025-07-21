@@ -7,9 +7,20 @@
  */
 
 /**
+ * @typedef { {
+ *   name: string,
+ *   info: string,
+ *   type?: 'function',
+ *   params?: Array<{
+ *     name: string;
+ *   }>
+ * } } Builtin
+ */
+
+/**
  * FEEL built-ins available with Camunda / feel-scala.
  *
- * @type { import('@camunda/feel-builtins').Builtin[] }
+ * @type { Builtin[] }
  */
 export const camundaBuiltins = [
   {

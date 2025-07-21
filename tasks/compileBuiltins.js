@@ -6,7 +6,7 @@ import { parseBuiltins } from './utils/parseBuiltins.js';
 // paths relative to CWD
 const MARKDOWN_SRC = './camunda-docs/docs/components/modeler/feel/builtin-functions/*.md';
 const JS_SRC = './tasks/camundaBuiltins.template.js';
-const JS_DEST = './lib/camundaBuiltins.js';
+const JS_DEST = './src/camundaBuiltins.js';
 
 const CAMUNDA_BUILTINS_PLACEHOLDER = '/** CAMUNDA_BUILTINS_PLACEHOLDER */ []';
 
