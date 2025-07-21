@@ -1,5 +1,10 @@
 name: UPDATE_BUILTINS
-on: [ push ]
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+      - cron: '17 2 * * 0' # Every Sunday at 2:17 AM (random time to distribute load)
 jobs:
   build:
     strategy:
@@ -26,11 +31,41 @@ jobs:
         with:
           repository: camunda/camunda-docs
           path: camunda-docs
-      - name: debug
-        run: ls -la
       - name: Update builtins
-        run: npm run compile:builtins
-      - name: Debug 2
-        run: git status
+        run: npm run compile-builtins
       - name: All
         run: npm run all
+      - name: Check if files changed
+        id: check_builtins
+        run: |
+          files=$(git status -u --porcelain)
+          if [ -n "$files" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Debug
+        run: | 
+          echo changed: ${{ steps.check_builtins.outputs.changed }}
+          echo eventname: ${{ github.event_name }}
+          echo eventtype: ${{ github.event.action }}
+          echo prtype: ${{ github.event.action }}
+          echo base: ${{ github.event.pull_request.base.ref }}
+      - name: Add comment on PRs
+        if: steps.check_builtins.outputs.changed == 'true' && github.event_name == 'pull_request' && github.event.action == 'opened'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.number }}
+          BODY: |
+            This PR would lead to changes in the repo. Consider if you want to include all changes in this PR or if there's already a PR that includes these changes.
+        run: gh issue comment "$NUMBER" --body "$BODY"
+      - name: Create PRs automatically
+        if: steps.check_builtins.outputs.changed == 'true' && (github.event_name == 'scheduled' || github.event_name == 'workflow_dispatch')
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'chore: update builtins'
+          branch: update-builtins
+          title: 'Update builtins'
+          body: |
+            :robot: Automated PR to update builtin functions
