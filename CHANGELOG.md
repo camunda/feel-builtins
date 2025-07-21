@@ -8,4 +8,4 @@ ___Note:__ Yet to be released changes appear here._
 
 ## 0.1.0
 
-* `FEAT`: Initial release, import `camundaBuiltins` from `@bpmn-io/feel-editor` ([#1](https://github.com/camunda/feel-builtins/pull/1))
+* `FEAT`: initial release, import `camundaBuiltins` from `@bpmn-io/feel-editor` ([#1](https://github.com/camunda/feel-builtins/pull/1))
