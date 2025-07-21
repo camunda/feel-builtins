@@ -1,0 +1,23 @@
+{
+  "name": "@camunda/feel-builtins",
+  "version": "0.0.1",
+  "description": "Collection of builtin Camunda extensions for FEEL",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camunda/feel-builtins.git"
+  },
+  "author": "Camunda <https://camunda.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/camunda/feel-builtins/issues"
+  },
+  "homepage": "https://github.com/camunda/feel-builtins#readme"
+}
