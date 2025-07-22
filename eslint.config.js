@@ -3,16 +3,18 @@ import bpmnIoPlugin from 'eslint-plugin-bpmn-io';
 const files = {
   ignored: [
     'camunda-docs',
+    'dist',
 
     // generated
-    'lib/camundaBuiltins.js'
+    'src/camundaBuiltins.js'
   ],
   build: [
     '*.js',
     'tasks/**/*.js'
   ],
   test: [
-    'test/**/*.js'
+    'test/**/*.js',
+    'test/**/*.cjs'
   ]
 };
 

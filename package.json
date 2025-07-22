@@ -5,9 +5,11 @@
   "type": "module",
   "sideEffects": false,
   "scripts": {
-    "all": "run-s lint check-types test",
-    "test": "mocha test/**/*.spec.js",
+    "all": "run-s lint build check-types test",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "test": "mocha --recursive test",
     "lint": "eslint .",
+    "prepare": "run-s build",
     "check-types": "tsc --noEmit",
     "update-builtins": "run-s pull-docs compile-builtins",
     "pull-docs": "git -C camunda-docs pull || git clone git@github.com:camunda/camunda-docs.git camunda-docs",
@@ -24,17 +26,19 @@
     "marked": "^16.1.1",
     "mocha": "^11.7.1",
     "npm-run-all2": "^8.0.0",
+    "rollup": "^4.45.1",
     "typescript": "^5.8.3"
   },
   "exports": {
     ".": {
-      "import": "./lib/index.js",
-      "types": "./lib/index.d.ts"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     },
     "./package.json": "./package.json"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
