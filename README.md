@@ -1,5 +1,7 @@
 # Camunda FEEL Builtins
 
+[![CI](https://github.com/camunda/feel-builtins/actions/workflows/CI.yml/badge.svg)](https://github.com/camunda/feel-builtins/actions/workflows/CI.yml)
+
 Collection of builtin Camunda extensions for FEEL (Friendly Enough Expression Language). These builtins get extracted from [camunda-docs](https://github.com/camunda/camunda-docs/tree/main/docs/components/modeler/feel/builtin-functions).
 
 ## Installation
