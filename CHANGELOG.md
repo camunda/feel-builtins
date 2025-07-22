@@ -6,6 +6,10 @@ All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.2.0
+
+* `FEAT`: generate CJS distribution ([#6](https://github.com/camunda/feel-builtins/pull/6))
+
 ## 0.1.0
 
 * `FEAT`: initial release, import `camundaBuiltins` from `@bpmn-io/feel-editor` ([#1](https://github.com/camunda/feel-builtins/pull/1))
