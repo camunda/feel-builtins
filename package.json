@@ -6,7 +6,7 @@
   "sideEffects": false,
   "scripts": {
     "all": "run-s lint build check-types test",
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
     "test": "mocha --recursive test",
     "lint": "eslint .",
     "prepare": "run-s build",

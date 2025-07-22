@@ -48,13 +48,5 @@ export default [
       ...config,
       files: files.test
     };
-  }),
-
-  // support "with" import
-  {
-    languageOptions: {
-      ecmaVersion: 'latest'
-    },
-    files: files.build
-  }
+  })
 ];
