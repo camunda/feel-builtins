@@ -8,7 +8,7 @@ describe('lib/camundaBuiltins', function() {
   it('should export ALL built-ins', function() {
 
     // then
-    expect(camundaBuiltins).to.be.an('array').with.length(131);
+    expect(camundaBuiltins).to.be.an('array').with.length(135);
   });
 
 
