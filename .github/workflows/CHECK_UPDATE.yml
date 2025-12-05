@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        node-version: [ 20 ]
+        node-version: [ 24 ]
 
     runs-on: ${{ matrix.os }}
 
@@ -31,8 +31,6 @@ jobs:
           path: camunda-docs
       - name: Update builtins
         run: npm run compile-builtins
-      - name: All
-        run: npm run all
       - name: Create PRs automatically
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
