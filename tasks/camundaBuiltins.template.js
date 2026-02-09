@@ -18,8 +18,29 @@
  */
 
 /**
- * FEEL built-ins available with Camunda / feel-scala.
+ * List of standard FEEL built-in functions (excluding Camunda-specific extensions).
  *
  * @type { Builtin[] }
  */
-export const camundaBuiltins = /** CAMUNDA_BUILTINS_PLACEHOLDER */ [];
+export const feelBuiltins = /** FEEL_BUILTINS_PLACEHOLDER */ [];
+
+/**
+ * List of FEEL camunda extensions.
+ *
+ * @type { Builtin[] }
+ */
+export const camundaExtensions = /** CAMUNDA_EXTENSIONS_PLACEHOLDER */ [];
+
+/**
+ * Collection of builtins of camunda scala FEEL.
+ *
+ * @type { Builtin[] }
+ */
+export const camundaBuiltins = [ ...feelBuiltins, ...camundaExtensions ];
+
+/**
+ * Functions using reserved keywords in their name and need to be added to the parser context.
+ *
+ * @type { Builtin[] }
+ */
+export const camundaReservedNameBuiltins = /** RESERVED_NAME_BUILTINS_PLACEHOLDER */ [];
