@@ -2,7 +2,7 @@ import { parser } from '@bpmn-io/lezer-feel';
 
 /**
  * Test if a function is parsable
- * @param {import('@camunda/feel-builtins').Builtin} builtin
+ * @param {import('../../types/builtin.d.ts').Builtin} builtin
  * @returns {boolean}
  */
 function isParsable(builtin) {
@@ -28,7 +28,7 @@ function isParsable(builtin) {
 
 /**
  * Check if a builtin is a Camunda extension
- * @param {import('@camunda/feel-builtins').Builtin} builtin
+ * @param {import('../../types/builtin.d.ts').Builtin} builtin
  * @returns {boolean}
  */
 function isCamundaExtension(builtin) {
@@ -36,12 +36,12 @@ function isCamundaExtension(builtin) {
 }
 
 /**
- * Categorize builtins into FEEL standard functions Camunda extensions and list ones using reserved keywords.
- * @param {import('@camunda/feel-builtins').Builtin[]} builtins
+ * Categorize builtins into FEEL standard functions and Camunda extensions
+ * @param {import('../../types/builtin.d.ts').Builtin[]} builtins
  * @returns {{
- *   feelBuiltins: import('@camunda/feel-builtins').Builtin[],
- *   camundaExtensions: import('@camunda/feel-builtins').Builtin[],
- *   camundaReservedNameBuiltins: import('@camunda/feel-builtins').Builtin[]
+ *   feelBuiltins: import('../../types/builtin.d.ts').Builtin[],
+ *   camundaExtensions: import('../../types/builtin.d.ts').Builtin[],
+ *   unparsableBuiltins: import('../../types/builtin.d.ts').Builtin[]
  * }}
  */
 export function categorizeBuiltins(builtins) {
@@ -71,9 +71,9 @@ export function categorizeBuiltins(builtins) {
 /**
  * Log categorization statistics
  * @param {{
- *   feelBuiltins: import('@camunda/feel-builtins').Builtin[],
- *   camundaExtensions: import('@camunda/feel-builtins').Builtin[],
- *   camundaReservedNameBuiltins: import('@camunda/feel-builtins').Builtin[]
+ *   feelBuiltins: import('../../types/builtin.d.ts').Builtin[],
+ *   camundaExtensions: import('../../types/builtin.d.ts').Builtin[],
+ *   unparsableBuiltins: import('../../types/builtin.d.ts').Builtin[]
  * }} categorized
  */
 export function logStatistics(categorized) {

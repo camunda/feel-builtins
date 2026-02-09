@@ -6,21 +6,14 @@
  * Make sure you edit the template file `tasks/camundaBuiltins.template.js` and run `compile:builtins` (or `update:builtins`) to update the file in lib.
  */
 
-/**
- * @typedef { {
- *   name: string,
- *   info: string,
- *   type?: 'function',
- *   params?: Array<{
- *     name: string;
- *   }>
- * } } Builtin
- */
+{
+}
+
 
 /**
  * List of standard FEEL built-in functions (excluding Camunda-specific extensions).
  *
- * @type { Builtin[] }
+ * @type { import("../types/builtin.js").Builtin[] }
  */
 export const feelBuiltins = [
   {
@@ -1364,7 +1357,11 @@ export const feelBuiltins = [
 /**
  * List of FEEL camunda extensions.
  *
+<<<<<<< HEAD
  * @type { Builtin[] }
+=======
+ * @type { import("../types/builtin.js").Builtin[] }
+>>>>>>> 9160c3c (chore: autogenerate index.d.ts)
  */
 export const camundaExtensions = [
   {
@@ -1673,14 +1670,22 @@ export const camundaExtensions = [
 /**
  * Collection of builtins of camunda scala FEEL.
  *
+<<<<<<< HEAD
  * @type { Builtin[] }
+=======
+ * @type { import("../types/builtin.js").Builtin[] }
+>>>>>>> 9160c3c (chore: autogenerate index.d.ts)
  */
-export const camundaBuiltins = [ ...feelBuiltins, ...camundaExtensions ];
+export const camundaBuiltins = [...feelBuiltins, ...camundaExtensions];
 
 /**
  * Functions using reserved keywords in their name and need to be added to the parser context.
  *
+<<<<<<< HEAD
  * @type { Builtin[] }
+=======
+ * @type { import("../types/builtin.js").Builtin[] }
+>>>>>>> 9160c3c (chore: autogenerate index.d.ts)
  */
 export const camundaReservedNameBuiltins = [
   {
