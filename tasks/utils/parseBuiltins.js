@@ -1,9 +1,5 @@
 /**
- * @typedef { { name: string, description: string } } BuiltinDescriptor
- */
-
-/**
- * @param { BuiltinDescriptor[] } descriptors
+ * @param { import('./markdownParser.js').BuiltinDescriptor[] } descriptors
  *
  * @returns {import('@camunda/feel-builtins').Builtin[] }
  */
@@ -12,7 +8,7 @@ export function parseBuiltins(descriptors) {
 }
 
 /**
- * @param { BuiltinDescriptor } descriptor
+ * @param { import('./markdownParser.js').BuiltinDescriptor } descriptor
  *
  * @returns { import('@camunda/feel-builtins').Builtin }
  */
