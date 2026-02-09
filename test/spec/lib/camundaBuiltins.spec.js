@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { camundaBuiltins } from '@camunda/feel-builtins';
+import { camundaBuiltins, unparsableBuiltins } from '@camunda/feel-builtins';
 
 
 describe('lib/camundaBuiltins', function() {
@@ -9,6 +9,14 @@ describe('lib/camundaBuiltins', function() {
 
     // then
     expect(camundaBuiltins).to.be.an('array').with.length(135);
+  });
+
+
+  it('should export unparsableBuiltins', function() {
+
+    // then
+    expect(unparsableBuiltins).to.be.an('array').with.length(1);
+    expect(unparsableBuiltins[0].name).to.equal('get or else');
   });
 
 

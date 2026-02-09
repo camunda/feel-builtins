@@ -1,5 +1,5 @@
 import { glob } from 'glob';
-import { parseBuiltins, parseMarkdownFile, writeBuiltinsFromTemplate } from './utils/index.js';
+import { isParsable, parseBuiltins, parseMarkdownFile, writeBuiltinsFromTemplate } from './utils/index.js';
 
 // paths relative to CWD
 const MARKDOWN_SRC = './camunda-docs/docs/components/modeler/feel/builtin-functions/*.md';
@@ -13,7 +13,23 @@ async function run() {
 
   const builtins = parseBuiltins(descriptors);
 
-  await writeBuiltinsFromTemplate(JS_SRC, JS_DEST, builtins);
+  // Identify unparsable functions
+  const unparsableBuiltins = [];
+
+  for (const builtin of builtins) {
+    if (!isParsable(builtin)) {
+      unparsableBuiltins.push(builtin);
+    }
+  }
+
+  console.log(`Total functions: ${builtins.length}`);
+  console.log(`Unparsable functions: ${unparsableBuiltins.length}`);
+
+  if (unparsableBuiltins.length > 0) {
+    console.log('Unparsable function names:', unparsableBuiltins.map((b) => b.name).join(', '));
+  }
+
+  await writeBuiltinsFromTemplate(JS_SRC, JS_DEST, { allBuiltins: builtins, unparsableBuiltins });
 }
 
 run().catch((err) => {

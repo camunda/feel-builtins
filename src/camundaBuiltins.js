@@ -7,20 +7,9 @@
  */
 
 /**
- * @typedef { {
- *   name: string,
- *   info: string,
- *   type?: 'function',
- *   params?: Array<{
- *     name: string;
- *   }>
- * } } Builtin
- */
-
-/**
- * FEEL built-ins available with Camunda / feel-scala.
+ * Collection of builtins of camunda scala FEEL.
  *
- * @type { Builtin[] }
+ * @type { import("../dist/index.d.ts").Builtin[] }
  */
 export const camundaBuiltins = [
   {
@@ -1659,5 +1648,26 @@ export const camundaBuiltins = [
       }
     ],
     "info": "<p><em>Camunda Extension</em></p>\n<p>Takes the month of the given date or date-time value and returns the last day of this month.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">last day of month(date: date): date\n</code></pre>\n<pre><code class=\"language-feel\">last day of month(date: date and time): date\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">last day of month(date(&quot;2022-10-01&quot;))\n// date(&quot;2022-10-31&quot;))\n\nlast day of month(date and time(&quot;2022-10-16T12:00:00&quot;))\n// date(&quot;2022-10-31&quot;))\n</code></pre>\n"
+  }
+];
+
+/**
+ * Functions that cannot be parsed by the lezer-feel parser without context.
+ *
+ * @type { import("../dist/index.d.ts").Builtin[] }
+ */
+export const unparsableBuiltins = [
+  {
+    "name": "get or else",
+    "type": "function",
+    "params": [
+      {
+        "name": "value"
+      },
+      {
+        "name": "default"
+      }
+    ],
+    "info": "<p><em>Camunda Extension</em></p>\n<p>Return the provided value parameter if not <code>null</code>, otherwise return the default parameter</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">get or else(value: Any, default: Any): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">get or else(&quot;this&quot;, &quot;default&quot;)\n// &quot;this&quot;\n\nget or else(null, &quot;default&quot;)\n// &quot;default&quot;\n\nget or else(null, null)\n// null\n</code></pre>\n"
   }
 ];

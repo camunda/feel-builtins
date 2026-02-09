@@ -1,7 +1,13 @@
 /**
- * A collection of builtin of FEEL.
+ * Collection of builtins of camunda scala FEEL.
  */
 export const camundaBuiltins: Builtin[];
+
+/**
+ * Functions that cannot be parsed with lezer-feel without context.
+ */
+export const unparsableBuiltins: Builtin[];
+
 export type Builtin = {
   /**
    * The name of the builtin function.
@@ -12,11 +18,11 @@ export type Builtin = {
    */
   info: string;
   /**
-   * type of the builtin, always 'function' for builtin functions.
+   * Type of the builtin, always 'function' for builtin functions.
    */
-  type?: "function";
+  type?: 'function';
   /**
-   * function parameters.
+   * Function parameters.
    */
   params?: Array<{
     name: string;

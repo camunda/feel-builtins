@@ -15,6 +15,9 @@
     "pull-docs": "git -C camunda-docs pull || git clone git@github.com:camunda/camunda-docs.git camunda-docs",
     "compile-builtins": "node tasks/compileBuiltins.js"
   },
+  "dependencies": {
+    "@bpmn-io/lezer-feel": "^2.1.0"
+  },
   "devDependencies": {
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",

@@ -6,7 +6,8 @@
     "strict": true,
     "checkJs": true,
     "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "skipLibCheck": true
   },
   "include": [
     "src",

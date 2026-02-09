@@ -7,19 +7,15 @@
  */
 
 /**
- * @typedef { {
- *   name: string,
- *   info: string,
- *   type?: 'function',
- *   params?: Array<{
- *     name: string;
- *   }>
- * } } Builtin
- */
-
-/**
- * FEEL built-ins available with Camunda / feel-scala.
+ * Collection of builtins of camunda scala FEEL.
  *
- * @type { Builtin[] }
+ * @type { import("../dist/index.d.ts").Builtin[] }
  */
 export const camundaBuiltins = /** CAMUNDA_BUILTINS_PLACEHOLDER */ [];
+
+/**
+ * Functions that cannot be parsed with lezer-feel without context.
+ *
+ * @type { import("../dist/index.d.ts").Builtin[] }
+ */
+export const unparsableBuiltins = /** CAMUNDA_UNPARSABLE_BUILTINS_PLACEHOLDER */ [];
