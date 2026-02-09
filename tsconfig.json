@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ES2018"
-    ],
+    "lib": [ "ES2018" ],
     "strict": true,
     "checkJs": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "./dist",
+    "declarationMap": false,
+    "rootDir": "./"
   },
-  "include": [
-    "src",
-    "tasks",
-    "test"
-  ]
+  "include": [ "src/index.js", "types/**/*" ]
 }
