@@ -1,1 +1,1 @@
-export { camundaBuiltins, unparsableBuiltins } from './camundaBuiltins.js';
+export { camundaBuiltins, feelBuiltins, camundaExtensions, unparsableBuiltins } from './camundaBuiltins.js';

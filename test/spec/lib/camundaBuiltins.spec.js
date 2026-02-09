@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { camundaBuiltins, unparsableBuiltins } from '@camunda/feel-builtins';
+import { camundaBuiltins, feelBuiltins, camundaExtensions, unparsableBuiltins } from '@camunda/feel-builtins';
 
 
 describe('lib/camundaBuiltins', function() {
@@ -9,6 +9,37 @@ describe('lib/camundaBuiltins', function() {
 
     // then
     expect(camundaBuiltins).to.be.an('array').with.length(135);
+  });
+
+
+  it('should export feelBuiltins', function() {
+
+    // then
+    expect(feelBuiltins).to.be.an('array');
+    expect(feelBuiltins.length).to.be.greaterThan(0);
+
+    // standard FEEL function should be in feelBuiltins
+    const notFunction = feelBuiltins.find(b => b.name === 'not');
+    expect(notFunction).to.exist;
+  });
+
+
+  it('should export camundaExtensions', function() {
+
+    // then
+    expect(camundaExtensions).to.be.an('array');
+    expect(camundaExtensions.length).to.be.greaterThan(0);
+
+    // Camunda extension should be in camundaExtensions
+    const getOrElse = camundaExtensions.find(b => b.name === 'get or else');
+    expect(getOrElse).to.exist;
+  });
+
+
+  it('should compute camundaBuiltins from feelBuiltins and camundaExtensions', function() {
+
+    // then
+    expect(camundaBuiltins.length).to.equal(feelBuiltins.length + camundaExtensions.length);
   });
 
 

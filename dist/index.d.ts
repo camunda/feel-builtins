@@ -4,6 +4,16 @@
 export const camundaBuiltins: Builtin[];
 
 /**
+ * List of standard FEEL built-in functions (excluding Camunda-specific extensions).
+ */
+export const feelBuiltins: Builtin[];
+
+/**
+ * List of FEEL camunda extensions.
+ */
+export const camundaExtensions: Builtin[];
+
+/**
  * Functions that cannot be parsed with lezer-feel without context.
  */
 export const unparsableBuiltins: Builtin[];

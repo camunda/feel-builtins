@@ -14,6 +14,14 @@ npm install @camunda/feel-builtins
 
 ## Usage
 
+This package exports multiple collections of FEEL builtins:
+
+* **`camundaBuiltins`**: Collection of builtins of camunda scala FEEL.
+* **`feelBuiltins`**: List of standard FEEL built-in functions (excluding Camunda-specific extensions).
+* **`camundaExtensions`**: List of FEEL camunda extensions.
+* **`unparsableBuiltins`**: Functions that cannot be parsed with lezer-feel without context.
+  * You probably want to inject those builtins as additional context to make the parser work.
+
 ### Feel Editor
 
 In your [FEEL editor](https://github.com/bpmn-io/feel-editor) you can use these builtins to establish the Camunda context:
@@ -26,6 +34,18 @@ const editor = new FeelEditor({
   container,
   builtins: camundaBuiltins,
   parserDialect: 'camunda'
+});
+```
+
+If you only want standard FEEL functions, use `feelBuiltins` instead:
+
+```js
+import { feelBuiltins } from '@camunda/feel-builtins';
+
+const editor = new FeelEditor({
+  container,
+  builtins: feelBuiltins,
+  parserDialect: 'feel-1.2'
 });
 ```
 

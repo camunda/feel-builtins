@@ -7,11 +7,25 @@
  */
 
 /**
+ * List of standard FEEL built-in functions (excluding Camunda-specific extensions).
+ *
+ * @type { import("../dist/index.d.ts").Builtin[] }
+ */
+export const feelBuiltins = /** FEEL_BUILTINS_PLACEHOLDER */ [];
+
+/**
+ * List of FEEL camunda extensions.
+ *
+ * @type { import("../dist/index.d.ts").Builtin[] }
+ */
+export const camundaExtensions = /** CAMUNDA_EXTENSIONS_PLACEHOLDER */ [];
+
+/**
  * Collection of builtins of camunda scala FEEL.
  *
  * @type { import("../dist/index.d.ts").Builtin[] }
  */
-export const camundaBuiltins = /** CAMUNDA_BUILTINS_PLACEHOLDER */ [];
+export const camundaBuiltins = [ ...feelBuiltins, ...camundaExtensions ];
 
 /**
  * Functions that cannot be parsed with lezer-feel without context.
