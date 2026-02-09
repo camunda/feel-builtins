@@ -1,5 +1,5 @@
 import { glob } from 'glob';
-import { parseBuiltins, parseMarkdownFile, writeBuiltinsFromTemplate } from './utils/index.js';
+import { categorizeBuiltins, logStatistics, parseBuiltins, parseMarkdownFile, writeBuiltinsFromTemplate } from './utils/index.js';
 
 // paths relative to CWD
 const MARKDOWN_SRC = './camunda-docs/docs/components/modeler/feel/builtin-functions/*.md';
@@ -13,7 +13,12 @@ async function run() {
 
   const builtins = parseBuiltins(descriptors);
 
-  await writeBuiltinsFromTemplate(JS_SRC, JS_DEST, builtins);
+  // Categorize into FEEL builtins and Camunda extensions
+  const categorized = categorizeBuiltins(builtins);
+
+  logStatistics(categorized);
+
+  await writeBuiltinsFromTemplate(JS_SRC, JS_DEST, categorized);
 }
 
 run().catch((err) => {

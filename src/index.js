@@ -1,1 +1,1 @@
-export { camundaBuiltins } from './camundaBuiltins.js';
+export { camundaBuiltins, feelBuiltins, camundaExtensions, camundaReservedNameBuiltins } from './camundaBuiltins.js';

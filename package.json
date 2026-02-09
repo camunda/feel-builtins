@@ -16,6 +16,7 @@
     "compile-builtins": "node tasks/compileBuiltins.js"
   },
   "devDependencies": {
+    "@bpmn-io/lezer-feel": "^2.2.1",
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.0.0",
