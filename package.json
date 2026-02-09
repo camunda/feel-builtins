@@ -6,7 +6,11 @@
   "sideEffects": false,
   "scripts": {
     "all": "run-s lint build check-types test",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "run-s build:bundle build:types bundle:dts clean:temp-dts",
+    "build:bundle": "rollup -c rollup.config.js",
+    "build:types": "tsc",
+    "bundle:dts": "rollup -c rollup.config.dts.js",
+    "clean:temp-dts": "rm -rf dist/src",
     "test": "mocha --recursive test",
     "lint": "eslint .",
     "prepare": "run-s build",
@@ -30,6 +34,7 @@
     "mocha": "^11.7.1",
     "npm-run-all2": "^8.0.0",
     "rollup": "^4.45.1",
+    "rollup-plugin-dts": "^6.3.0",
     "typescript": "^5.8.3"
   },
   "exports": {

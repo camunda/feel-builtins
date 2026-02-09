@@ -6,10 +6,13 @@
  * Make sure you edit the template file `tasks/camundaBuiltins.template.js` and run `compile:builtins` (or `update:builtins`) to update the file in lib.
  */
 
+{
+}
+
 /**
  * List of standard FEEL built-in functions (excluding Camunda-specific extensions).
  *
- * @type { import("../dist/index.d.ts").Builtin[] }
+ * @type { import("../types/builtin.js").Builtin[] }
  */
 export const feelBuiltins = [
   {
@@ -1353,7 +1356,7 @@ export const feelBuiltins = [
 /**
  * List of FEEL camunda extensions.
  *
- * @type { import("../dist/index.d.ts").Builtin[] }
+ * @type { import("../types/builtin.js").Builtin[] }
  */
 export const camundaExtensions = [
   {
@@ -1662,14 +1665,14 @@ export const camundaExtensions = [
 /**
  * Collection of builtins of camunda scala FEEL.
  *
- * @type { import("../dist/index.d.ts").Builtin[] }
+ * @type { import("../types/builtin.js").Builtin[] }
  */
-export const camundaBuiltins = [ ...feelBuiltins, ...camundaExtensions ];
+export const camundaBuiltins = [...feelBuiltins, ...camundaExtensions];
 
 /**
  * Functions that cannot be parsed with lezer-feel without context.
  *
- * @type { import("../dist/index.d.ts").Builtin[] }
+ * @type { import("../types/builtin.js").Builtin[] }
  */
 export const unparsableBuiltins = [
   {
