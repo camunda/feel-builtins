@@ -6,6 +6,11 @@ All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.4.0
+
+* `FEAT`: categorize built-ins ([#20](https://github.com/camunda/feel-builtins/pull/20))
+* `FEAT`: split built-ins into Camunda extensions and FEEL built-ins ([#11](https://github.com/camunda/feel-builtins/issues/11))
+
 ## 0.3.0
 
 * `FEAT`: update builtins: include `number`, `from json`, `to json` functions ([#9](https://github.com/camunda/feel-builtins/pull/9))
