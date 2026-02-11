@@ -6,6 +6,10 @@ All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.0.0
+
+_Stable release._
+
 ## 0.4.0
 
 * `FEAT`: categorize built-ins ([#20](https://github.com/camunda/feel-builtins/pull/20))
