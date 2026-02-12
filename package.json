@@ -21,7 +21,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.0.0",
     "chai": "^6.0.0",
-    "eslint": "^9.31.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-bpmn-io": "^2.2.0",
     "glob": "^11.0.3",
     "marked": "^17.0.0",
