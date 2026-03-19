@@ -1,7 +1,7 @@
 /**
  * @param { import('./markdownParser.js').BuiltinDescriptor[] } descriptors
  *
- * @returns {import('@camunda/feel-builtins').Builtin[] }
+ * @returns {import('../../types/builtin.d.ts').Builtin[] }
  */
 export function parseBuiltins(descriptors) {
   return descriptors.map(parseBuiltin);
@@ -10,14 +10,10 @@ export function parseBuiltins(descriptors) {
 /**
  * @param { import('./markdownParser.js').BuiltinDescriptor } descriptor
  *
- * @returns { import('@camunda/feel-builtins').Builtin }
+ * @returns { import('../../types/builtin.d.ts').Builtin }
  */
 export function parseBuiltin(descriptor) {
-
-  const {
-    name,
-    description
-  } = descriptor;
+  const { name, description } = descriptor;
 
   const match = name.match(/^([\w\s]+)\((.*)\)$/);
 
@@ -29,13 +25,12 @@ export function parseBuiltin(descriptor) {
   const functionArguments = match[2];
 
   // parameterless function matches as empty string
-  const params = functionArguments ? functionArguments.split(', ').map(name => ({ name })) : [];
+  const params = functionArguments ? functionArguments.split(', ').map((name) => ({ name })) : [];
 
   return {
     name: functionName,
     type: 'function',
     params,
-    info: description
+    info: description,
   };
 }
-

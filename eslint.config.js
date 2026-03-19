@@ -6,47 +6,38 @@ const files = {
     'dist',
 
     // generated
-    'src/camundaBuiltins.js'
+    'src/camundaBuiltins.js',
   ],
-  build: [
-    '*.js',
-    'tasks/**/*.js'
-  ],
-  test: [
-    'test/**/*.js',
-    'test/**/*.cjs'
-  ]
+  build: [ '*.js', 'tasks/**/*.js' ],
+  test: [ 'test/**/*.js', 'test/**/*.cjs' ],
 };
 
 export default [
   {
-    ignores: files.ignored
+    ignores: files.ignored,
   },
 
   // build
-  ...bpmnIoPlugin.configs.node.map(config => {
-
+  ...bpmnIoPlugin.configs.node.map((config) => {
     return {
       ...config,
-      files: files.build
+      files: files.build,
     };
   }),
 
   // lib
-  ...bpmnIoPlugin.configs.recommended.map(config => {
-
+  ...bpmnIoPlugin.configs.recommended.map((config) => {
     return {
       ...config,
-      ignores: files.build
+      ignores: files.build,
     };
   }),
 
   // test
-  ...bpmnIoPlugin.configs.mocha.map(config => {
-
+  ...bpmnIoPlugin.configs.mocha.map((config) => {
     return {
       ...config,
-      files: files.test
+      files: files.test,
     };
-  })
+  }),
 ];

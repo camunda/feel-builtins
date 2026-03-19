@@ -9,9 +9,9 @@ const RESERVED_NAME_BUILTINS_PLACEHOLDER = '/** RESERVED_NAME_BUILTINS_PLACEHOLD
  * @param {string} templatePath
  * @param {string} destinationPath
  * @param {Object} categorized
- * @param {import('@camunda/feel-builtins').Builtin[]} categorized.feelBuiltins
- * @param {import('@camunda/feel-builtins').Builtin[]} categorized.camundaExtensions
- * @param {import('@camunda/feel-builtins').Builtin[]} categorized.camundaReservedNameBuiltins
+ * @param {import('../../types/builtin.d.ts').Builtin[]} categorized.feelBuiltins
+ * @param {import('../../types/builtin.d.ts').Builtin[]} categorized.camundaExtensions
+ * @param {import('../../types/builtin.d.ts').Builtin[]} categorized.unparsableBuiltins
  */
 export async function writeBuiltinsFromTemplate(templatePath, destinationPath, categorized) {
   const { feelBuiltins, camundaExtensions, camundaReservedNameBuiltins } = categorized;
