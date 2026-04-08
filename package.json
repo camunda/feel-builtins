@@ -28,7 +28,7 @@
     "mocha": "^11.7.1",
     "npm-run-all2": "^8.0.0",
     "rollup": "^4.45.1",
-    "typescript": "^5.8.3"
+    "typescript": "^6.0.0"
   },
   "exports": {
     ".": {
