@@ -13,7 +13,8 @@
  *   type?: 'function',
  *   params?: Array<{
  *     name: string;
- *   }>
+ *   }>,
+ *   engines?: Record<string, string>
  * } } Builtin
  */
 

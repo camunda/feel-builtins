@@ -1,3 +1,5 @@
+import { enginesByFunction } from '../engines.js';
+
 /**
  * @param { import('./markdownParser.js').BuiltinDescriptor[] } descriptors
  *
@@ -31,11 +33,14 @@ export function parseBuiltin(descriptor) {
   // parameterless function matches as empty string
   const params = functionArguments ? functionArguments.split(', ').map(name => ({ name })) : [];
 
+  const engines = enginesByFunction[functionName];
+
   return {
     name: functionName,
     type: 'function',
     params,
-    info: description
+    info: description,
+    ...engines && { engines }
   };
 }
 
