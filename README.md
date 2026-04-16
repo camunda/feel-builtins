@@ -84,6 +84,9 @@ npm run all
 
 # update the built-ins from latest camunda-docs
 npm run update-builtins
+
+# list unique function names introduced after 8.6, prefixed by first version and sorted by version
+npm run list-functions-above-8.6
 ```
 
 ## Related

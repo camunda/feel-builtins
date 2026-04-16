@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
     "lib": [
-      "ES2018"
+      "ES2019"
     ],
     "strict": true,
     "checkJs": true,
+    "noEmit": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "types": [
+      "node",
+      "mocha"
+    ],
     "skipLibCheck": true
   },
   "include": [

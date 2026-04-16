@@ -13,7 +13,8 @@
     "check-types": "tsc --noEmit",
     "update-builtins": "run-s pull-docs compile-builtins",
     "pull-docs": "git -C camunda-docs pull || git clone git@github.com:camunda/camunda-docs.git camunda-docs",
-    "compile-builtins": "node tasks/compileBuiltins.js"
+    "compile-builtins": "node tasks/compileBuiltins.js",
+    "list-functions-above-8.6": "node tasks/listFunctionNamesAboveVersion.js"
   },
   "devDependencies": {
     "@bpmn-io/lezer-feel": "^2.2.1",
