@@ -19,8 +19,11 @@ for (const builtin of camundaBuiltins) {
   }
 }
 
-const functions = [ ...functionsByName.entries() ]
-  .sort(([ leftName, leftEngine ], [ rightName, rightEngine ]) => {
+const functions = Array.from(functionsByName.entries())
+  .sort((leftEntry, rightEntry) => {
+    const [ leftName, leftEngine ] = leftEntry;
+    const [ rightName, rightEngine ] = rightEntry;
+
     return compareVersions(leftEngine, rightEngine) || leftName.localeCompare(rightName);
   });
 

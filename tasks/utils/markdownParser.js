@@ -20,7 +20,9 @@ export async function parseMarkdownFile(fileName, currentVersion) {
   const [ _heading, ...contents ] = fileContent.split('## ');
 
   const descriptions = await Promise.all(
-    contents.flatMap(async (string) => {
+    contents.map(async (
+        /** @type {string} */ string
+    ) => {
       const name = string.split('\n')[0];
       let description = await Promise.resolve(marked.parse(string.split('\n').slice(1).join('\n')));
 

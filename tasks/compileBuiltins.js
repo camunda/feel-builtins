@@ -21,8 +21,9 @@ async function run() {
     Promise.all(versionedFiles.sort().map((file) => parseMarkdownFile(file)))
   ]);
 
-  const currentDescriptors = descriptors.flat();
-  const builtins = parseBuiltins(currentDescriptors, [ ...currentDescriptors, ...versionedDescriptors.flat() ]);
+  const currentDescriptors = descriptors.reduce(flattenDescriptors, []);
+  const supportedDescriptors = currentDescriptors.concat(versionedDescriptors.reduce(flattenDescriptors, []));
+  const builtins = parseBuiltins(currentDescriptors, supportedDescriptors);
 
   // Categorize into FEEL builtins and Camunda extensions
   const categorized = categorizeBuiltins(builtins);
@@ -39,16 +40,19 @@ run().catch((err) => {
 });
 
 async function getCurrentDocsVersion() {
+
+  /** @type {string[]} */
   const versions = JSON.parse(await readFile(DOCS_VERSIONS_SRC, 'utf-8'));
 
   if (!Array.isArray(versions) || !versions.length) {
     throw new Error(`failed to determine current docs version from <${DOCS_VERSIONS_SRC}>`);
   }
 
-  const latestVersion = versions
+  /** @type {[number, number][]} */
+  const sortedVersions = versions
     .map(parseVersion)
-    .sort(compareVersionParts)
-    .at(-1);
+    .sort(compareVersionParts);
+  const latestVersion = sortedVersions[sortedVersions.length - 1];
 
   if (!latestVersion) {
     throw new Error(`failed to parse versions from <${DOCS_VERSIONS_SRC}>`);
@@ -57,6 +61,10 @@ async function getCurrentDocsVersion() {
   return `${latestVersion[0]}.${latestVersion[1] + 1}`;
 }
 
+/**
+ * @param {string} version
+ * @returns {[number, number]}
+ */
 function parseVersion(version) {
   const match = version.match(/^(\d+)\.(\d+)$/);
 
@@ -67,6 +75,18 @@ function parseVersion(version) {
   return [ Number(match[1]), Number(match[2]) ];
 }
 
+/**
+ * @param {[number, number]} left
+ * @param {[number, number]} right
+ */
 function compareVersionParts(left, right) {
   return left[0] - right[0] || left[1] - right[1];
+}
+
+/**
+ * @param {import('./utils/markdownParser.js').BuiltinDescriptor[]} accumulator
+ * @param {import('./utils/markdownParser.js').BuiltinDescriptor[]} descriptors
+ */
+function flattenDescriptors(accumulator, descriptors) {
+  return accumulator.concat(descriptors);
 }
