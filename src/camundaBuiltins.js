@@ -29,7 +29,7 @@ export const feelBuiltins = [
   {
     "name": "not",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -42,7 +42,7 @@ export const feelBuiltins = [
   {
     "name": "get value",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -58,7 +58,7 @@ export const feelBuiltins = [
   {
     "name": "get entries",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -71,7 +71,7 @@ export const feelBuiltins = [
   {
     "name": "context put",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -90,7 +90,7 @@ export const feelBuiltins = [
   {
     "name": "string",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -103,7 +103,7 @@ export const feelBuiltins = [
   {
     "name": "number",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -151,7 +151,7 @@ export const feelBuiltins = [
   {
     "name": "context",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -164,7 +164,7 @@ export const feelBuiltins = [
   {
     "name": "date",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -177,7 +177,7 @@ export const feelBuiltins = [
   {
     "name": "date",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -196,7 +196,7 @@ export const feelBuiltins = [
   {
     "name": "time",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -209,7 +209,7 @@ export const feelBuiltins = [
   {
     "name": "time",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -228,7 +228,7 @@ export const feelBuiltins = [
   {
     "name": "time",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -250,7 +250,7 @@ export const feelBuiltins = [
   {
     "name": "date and time",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -263,7 +263,7 @@ export const feelBuiltins = [
   {
     "name": "date and time",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -279,7 +279,7 @@ export const feelBuiltins = [
   {
     "name": "duration",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -292,7 +292,7 @@ export const feelBuiltins = [
   {
     "name": "years and months duration",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -334,7 +334,7 @@ export const feelBuiltins = [
   {
     "name": "list contains",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -350,7 +350,7 @@ export const feelBuiltins = [
   {
     "name": "count",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -363,7 +363,7 @@ export const feelBuiltins = [
   {
     "name": "min",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -376,7 +376,7 @@ export const feelBuiltins = [
   {
     "name": "max",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -389,7 +389,7 @@ export const feelBuiltins = [
   {
     "name": "sum",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -402,7 +402,7 @@ export const feelBuiltins = [
   {
     "name": "product",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -415,7 +415,7 @@ export const feelBuiltins = [
   {
     "name": "mean",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -428,7 +428,7 @@ export const feelBuiltins = [
   {
     "name": "median",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -441,7 +441,7 @@ export const feelBuiltins = [
   {
     "name": "stddev",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -454,7 +454,7 @@ export const feelBuiltins = [
   {
     "name": "mode",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -467,7 +467,7 @@ export const feelBuiltins = [
   {
     "name": "all",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.0"
     },
     "type": "function",
     "params": [
@@ -480,7 +480,7 @@ export const feelBuiltins = [
   {
     "name": "any",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.0"
     },
     "type": "function",
     "params": [
@@ -493,7 +493,7 @@ export const feelBuiltins = [
   {
     "name": "sublist",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -509,7 +509,7 @@ export const feelBuiltins = [
   {
     "name": "sublist",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -528,7 +528,7 @@ export const feelBuiltins = [
   {
     "name": "append",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -544,7 +544,7 @@ export const feelBuiltins = [
   {
     "name": "concatenate",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -557,7 +557,7 @@ export const feelBuiltins = [
   {
     "name": "insert before",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -576,7 +576,7 @@ export const feelBuiltins = [
   {
     "name": "remove",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -592,7 +592,7 @@ export const feelBuiltins = [
   {
     "name": "reverse",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -605,7 +605,7 @@ export const feelBuiltins = [
   {
     "name": "index of",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -621,7 +621,7 @@ export const feelBuiltins = [
   {
     "name": "union",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -634,7 +634,7 @@ export const feelBuiltins = [
   {
     "name": "distinct values",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -647,7 +647,7 @@ export const feelBuiltins = [
   {
     "name": "flatten",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -660,7 +660,7 @@ export const feelBuiltins = [
   {
     "name": "sort",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -676,7 +676,7 @@ export const feelBuiltins = [
   {
     "name": "string join",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -689,7 +689,7 @@ export const feelBuiltins = [
   {
     "name": "string join",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -705,7 +705,7 @@ export const feelBuiltins = [
   {
     "name": "decimal",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -721,7 +721,7 @@ export const feelBuiltins = [
   {
     "name": "floor",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -734,7 +734,7 @@ export const feelBuiltins = [
   {
     "name": "floor",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -750,7 +750,7 @@ export const feelBuiltins = [
   {
     "name": "ceiling",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -763,7 +763,7 @@ export const feelBuiltins = [
   {
     "name": "ceiling",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -779,7 +779,7 @@ export const feelBuiltins = [
   {
     "name": "round up",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -795,7 +795,7 @@ export const feelBuiltins = [
   {
     "name": "round down",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -811,7 +811,7 @@ export const feelBuiltins = [
   {
     "name": "round half up",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -827,7 +827,7 @@ export const feelBuiltins = [
   {
     "name": "round half down",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -843,7 +843,7 @@ export const feelBuiltins = [
   {
     "name": "abs",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -856,7 +856,7 @@ export const feelBuiltins = [
   {
     "name": "modulo",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -872,7 +872,7 @@ export const feelBuiltins = [
   {
     "name": "sqrt",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -885,7 +885,7 @@ export const feelBuiltins = [
   {
     "name": "log",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -898,7 +898,7 @@ export const feelBuiltins = [
   {
     "name": "exp",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -911,7 +911,7 @@ export const feelBuiltins = [
   {
     "name": "odd",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -924,7 +924,7 @@ export const feelBuiltins = [
   {
     "name": "even",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -937,7 +937,7 @@ export const feelBuiltins = [
   {
     "name": "before",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -953,7 +953,7 @@ export const feelBuiltins = [
   {
     "name": "before",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -969,7 +969,7 @@ export const feelBuiltins = [
   {
     "name": "before",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -985,7 +985,7 @@ export const feelBuiltins = [
   {
     "name": "before",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1001,7 +1001,7 @@ export const feelBuiltins = [
   {
     "name": "after",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1017,7 +1017,7 @@ export const feelBuiltins = [
   {
     "name": "after",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1033,7 +1033,7 @@ export const feelBuiltins = [
   {
     "name": "after",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1049,7 +1049,7 @@ export const feelBuiltins = [
   {
     "name": "after",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1065,7 +1065,7 @@ export const feelBuiltins = [
   {
     "name": "meets",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1081,7 +1081,7 @@ export const feelBuiltins = [
   {
     "name": "met by",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1097,7 +1097,7 @@ export const feelBuiltins = [
   {
     "name": "overlaps",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1113,7 +1113,7 @@ export const feelBuiltins = [
   {
     "name": "overlaps before",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1129,7 +1129,7 @@ export const feelBuiltins = [
   {
     "name": "overlaps after",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1145,7 +1145,7 @@ export const feelBuiltins = [
   {
     "name": "finishes",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1161,7 +1161,7 @@ export const feelBuiltins = [
   {
     "name": "finishes",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1177,7 +1177,7 @@ export const feelBuiltins = [
   {
     "name": "finished by",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1193,7 +1193,7 @@ export const feelBuiltins = [
   {
     "name": "finished by",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1209,7 +1209,7 @@ export const feelBuiltins = [
   {
     "name": "includes",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1225,7 +1225,7 @@ export const feelBuiltins = [
   {
     "name": "includes",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1241,7 +1241,7 @@ export const feelBuiltins = [
   {
     "name": "during",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1257,7 +1257,7 @@ export const feelBuiltins = [
   {
     "name": "during",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1273,7 +1273,7 @@ export const feelBuiltins = [
   {
     "name": "starts",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1289,7 +1289,7 @@ export const feelBuiltins = [
   {
     "name": "starts",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1305,7 +1305,7 @@ export const feelBuiltins = [
   {
     "name": "started by",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1321,7 +1321,7 @@ export const feelBuiltins = [
   {
     "name": "started by",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1337,7 +1337,7 @@ export const feelBuiltins = [
   {
     "name": "coincides",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1353,7 +1353,7 @@ export const feelBuiltins = [
   {
     "name": "coincides",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1369,7 +1369,7 @@ export const feelBuiltins = [
   {
     "name": "substring",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1385,7 +1385,7 @@ export const feelBuiltins = [
   {
     "name": "substring",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1404,7 +1404,7 @@ export const feelBuiltins = [
   {
     "name": "string length",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1417,7 +1417,7 @@ export const feelBuiltins = [
   {
     "name": "upper case",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1430,7 +1430,7 @@ export const feelBuiltins = [
   {
     "name": "lower case",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1443,7 +1443,7 @@ export const feelBuiltins = [
   {
     "name": "substring before",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1459,7 +1459,7 @@ export const feelBuiltins = [
   {
     "name": "substring after",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1475,7 +1475,7 @@ export const feelBuiltins = [
   {
     "name": "contains",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1491,7 +1491,7 @@ export const feelBuiltins = [
   {
     "name": "starts with",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1507,7 +1507,7 @@ export const feelBuiltins = [
   {
     "name": "ends with",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1523,7 +1523,7 @@ export const feelBuiltins = [
   {
     "name": "matches",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1539,7 +1539,7 @@ export const feelBuiltins = [
   {
     "name": "matches",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1558,7 +1558,7 @@ export const feelBuiltins = [
   {
     "name": "replace",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1577,7 +1577,7 @@ export const feelBuiltins = [
   {
     "name": "replace",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1599,7 +1599,7 @@ export const feelBuiltins = [
   {
     "name": "split",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1615,7 +1615,7 @@ export const feelBuiltins = [
   {
     "name": "now",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.0"
     },
     "type": "function",
     "params": [],
@@ -1624,7 +1624,7 @@ export const feelBuiltins = [
   {
     "name": "today",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.0"
     },
     "type": "function",
     "params": [],
@@ -1633,7 +1633,7 @@ export const feelBuiltins = [
   {
     "name": "day of week",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1646,7 +1646,7 @@ export const feelBuiltins = [
   {
     "name": "day of year",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1659,7 +1659,7 @@ export const feelBuiltins = [
   {
     "name": "week of year",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1672,7 +1672,7 @@ export const feelBuiltins = [
   {
     "name": "month of year",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1685,7 +1685,7 @@ export const feelBuiltins = [
   {
     "name": "abs",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1706,7 +1706,7 @@ export const camundaExtensions = [
   {
     "name": "is defined",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1719,7 +1719,7 @@ export const camundaExtensions = [
   {
     "name": "get or else",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.3"
     },
     "type": "function",
     "params": [
@@ -1735,7 +1735,7 @@ export const camundaExtensions = [
   {
     "name": "assert",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.3"
     },
     "type": "function",
     "params": [
@@ -1751,7 +1751,7 @@ export const camundaExtensions = [
   {
     "name": "assert",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.3"
     },
     "type": "function",
     "params": [
@@ -1770,7 +1770,7 @@ export const camundaExtensions = [
   {
     "name": "get value",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1786,7 +1786,7 @@ export const camundaExtensions = [
   {
     "name": "context put",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1805,7 +1805,7 @@ export const camundaExtensions = [
   {
     "name": "context merge",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1818,7 +1818,7 @@ export const camundaExtensions = [
   {
     "name": "date and time",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1834,7 +1834,7 @@ export const camundaExtensions = [
   {
     "name": "duplicate values",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.3"
     },
     "type": "function",
     "params": [
@@ -1847,7 +1847,7 @@ export const camundaExtensions = [
   {
     "name": "string join",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -1993,7 +1993,7 @@ export const camundaExtensions = [
   {
     "name": "random number",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [],
@@ -2002,7 +2002,7 @@ export const camundaExtensions = [
   {
     "name": "extract",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -2066,7 +2066,7 @@ export const camundaExtensions = [
   {
     "name": "last day of month",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.2"
     },
     "type": "function",
     "params": [
@@ -2094,7 +2094,7 @@ export const camundaReservedNameBuiltins = [
   {
     "name": "get or else",
     "engines": {
-      "camunda": ">=8.6"
+      "camunda": ">=8.3"
     },
     "type": "function",
     "params": [

@@ -1,6 +1,6 @@
 import { camundaBuiltins } from '../src/camundaBuiltins.js';
 
-const defaultMinimumVersion = '8.6';
+const defaultMinimumVersion = '8.2';
 const minimumVersion = process.argv[2] || defaultMinimumVersion;
 
 const functionsByName = new Map();

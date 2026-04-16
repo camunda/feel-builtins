@@ -6,6 +6,10 @@ import { readFile } from 'node:fs/promises';
  */
 
 const VERSIONED_DOCS_PATH_PATTERN = /\/versioned_docs\/version-(\d+\.\d+)\//;
+const LEGACY_BUILTIN_NAME_MAPPINGS = {
+  'and() / all()': 'all(list)',
+  'or() / any()': 'any(list)'
+};
 
 /**
  * Parse a markdown file to extract builtin function descriptors
@@ -17,21 +21,27 @@ export async function parseMarkdownFile(fileName, currentVersion) {
   const fileContent = await readFile(fileName, 'utf-8');
   const engine = inferEngineVersion(fileName, currentVersion);
 
+  return parseMarkdownContent(fileContent, engine);
+}
+
+/**
+ * Parse markdown content to extract builtin function descriptors
+ * @param {string} fileContent
+ * @param {string} [engine]
+ * @return {Promise<BuiltinDescriptor[]>}
+ */
+export async function parseMarkdownContent(fileContent, engine) {
+
   const [ _heading, ...contents ] = fileContent.split('## ');
 
   const descriptions = await Promise.all(
     contents.map(async (
         /** @type {string} */ string
     ) => {
-      const name = string.split('\n')[0];
+      const name = normalizeBuiltinName(string.split('\n')[0]);
       let description = await Promise.resolve(marked.parse(string.split('\n').slice(1).join('\n')));
 
       description = description.replace('<MarkerCamundaExtension></MarkerCamundaExtension>', '<em>Camunda Extension</em>');
-
-      // e.g. "and() / all()"
-      if (name.includes('/')) {
-        throw new Error(`unsupported built-in name <${name}>`);
-      }
 
       return { name, description, engine };
     }),
@@ -55,4 +65,22 @@ function inferEngineVersion(fileName, currentVersion) {
   if (fileName.includes('/docs/components/modeler/feel/builtin-functions/')) {
     return currentVersion;
   }
+}
+
+/**
+ * @param {string} name
+ * @returns {string}
+ */
+function normalizeBuiltinName(name) {
+  const normalizedName = LEGACY_BUILTIN_NAME_MAPPINGS[name];
+
+  if (normalizedName) {
+    return normalizedName;
+  }
+
+  if (name.includes('/')) {
+    throw new Error(`unsupported built-in name <${name}>`);
+  }
+
+  return name;
 }

@@ -54,9 +54,6 @@ describe('camundaBuiltins', function() {
     // then
     expectBuiltinProperties(camundaBuiltins, 'get or else', {
       name: 'get or else',
-      engines: {
-        camunda: '>=8.6'
-      },
       type: 'function',
       params: [ { name: 'value' }, { name: 'default' } ],
     });
@@ -68,9 +65,6 @@ describe('camundaBuiltins', function() {
     // then
     expectBuiltinProperties(camundaBuiltins, 'random number', {
       name: 'random number',
-      engines: {
-        camunda: '>=8.6'
-      },
       type: 'function',
       params: []
     });
