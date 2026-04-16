@@ -10,6 +10,9 @@
  * @typedef { {
  *   name: string,
  *   info: string,
+ *   engines?: {
+ *     camunda?: string;
+ *   },
  *   type?: 'function',
  *   params?: Array<{
  *     name: string;
