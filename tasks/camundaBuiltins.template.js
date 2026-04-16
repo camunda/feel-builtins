@@ -54,7 +54,7 @@ function enrichBuiltin(builtin) {
 function extractBuiltinTypeInformation(name, params, info) {
   const signatureSection = info.split('<p><strong>Examples</strong></p>')[0];
   const signatureLines = Array.from(signatureSection.matchAll(/<pre><code class="language-feel">([\s\S]*?)<\/code><\/pre>/g))
-    .map((match) => decodeHtmlEntities(match[1]).trim().split('\n')[0].trim())
+    .map((match) => decodeHtmlEntities(match[1]).split('\n')[0].trim())
     .filter((line) => line.startsWith(`${name}(`));
 
   if (!signatureLines.length) {
