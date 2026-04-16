@@ -185,10 +185,20 @@ function joinTypes(types) {
  * @returns {string}
  */
 function decodeHtmlEntities(value) {
-  return value
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, '\'');
+  return value.replace(/&(lt|gt|amp|quot|#39);/g, (match) => {
+    switch (match) {
+    case '&lt;':
+      return '<';
+    case '&gt;':
+      return '>';
+    case '&amp;':
+      return '&';
+    case '&quot;':
+      return '"';
+    case '&#39;':
+      return '\'';
+    default:
+      return match;
+    }
+  });
 }
