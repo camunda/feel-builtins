@@ -13,23 +13,216 @@
  *   type?: 'function',
  *   params?: Array<{
  *     name: string;
+ *     type: string;
  *   }>
+ *   return: {
+ *     type: string;
+ *   }
  * } } Builtin
  */
+
+/**
+ * @typedef {Omit<Builtin, 'params' | 'return'> & {
+ *   params?: Array<{
+ *     name: string;
+ *   }>
+ * }} RawBuiltin
+ */
+
+/**
+ * @param {RawBuiltin} builtin
+ *
+ * @returns {Builtin}
+ */
+function enrichBuiltin(builtin) {
+  const typeInformation = extractBuiltinTypeInformation(builtin.name, builtin.params || [], builtin.info);
+
+  return {
+    ...builtin,
+    params: typeInformation.params,
+    return: typeInformation.return
+  };
+}
+
+/**
+ * @param {string} name
+ * @param {{ name: string }[]} params
+ * @param {string} info
+ *
+ * @returns {{ params: Array<{ name: string, type: string }>, return: { type: string } }}
+ */
+function extractBuiltinTypeInformation(name, params, info) {
+  const signatureSection = info.split('<p><strong>Examples</strong></p>')[0];
+  const signatureLines = Array.from(signatureSection.matchAll(/<pre><code class="language-feel">([\s\S]*?)<\/code><\/pre>/g))
+    .map((match) => decodeHtmlEntities(match[1]).trim().split('\n')[0].trim())
+    .filter((line) => line.startsWith(`${name}(`));
+
+  if (!signatureLines.length) {
+    throw new Error(`failed to parse signature for <${name}>`);
+  }
+
+  const signatures = signatureLines.map(parseSignature);
+
+  return {
+    params: params.map((param, index) => ({
+      ...param,
+      type: joinTypes(signatures.map(({ params }) => params[index]?.type).filter(Boolean))
+    })),
+    return: {
+      type: joinTypes(signatures.map(({ returnType }) => returnType))
+    }
+  };
+}
+
+/**
+ * @param {string} signature
+ *
+ * @returns {{ params: Array<{ name: string, type: string }>, returnType: string }}
+ */
+function parseSignature(signature) {
+  const openIndex = signature.indexOf('(');
+
+  if (openIndex === -1) {
+    throw new Error(`failed to parse signature <${signature}>`);
+  }
+
+  let depth = 1;
+  let closeIndex = -1;
+
+  for (let index = openIndex + 1; index < signature.length; index++) {
+    const character = signature[index];
+
+    if (character === '(') {
+      depth++;
+    } else if (character === ')') {
+      depth--;
+
+      if (depth === 0) {
+        closeIndex = index;
+        break;
+      }
+    }
+  }
+
+  if (closeIndex === -1) {
+    throw new Error(`failed to parse signature <${signature}>`);
+  }
+
+  const params = splitTopLevel(signature.slice(openIndex + 1, closeIndex), ',').map((entry) => {
+    const separatorIndex = entry.indexOf(':');
+
+    if (separatorIndex === -1) {
+      throw new Error(`failed to parse parameter <${entry}> in signature <${signature}>`);
+    }
+
+    return {
+      name: entry.slice(0, separatorIndex).trim(),
+      type: entry.slice(separatorIndex + 1).trim()
+    };
+  });
+
+  const returnType = signature.slice(closeIndex + 1).trim().replace(/^:\s*/, '') || params[0]?.type || 'Any';
+
+  return {
+    params,
+    returnType
+  };
+}
+
+/**
+ * @param {string} value
+ * @param {string} separator
+ *
+ * @returns {string[]}
+ */
+function splitTopLevel(value, separator) {
+  if (!value) {
+    return [];
+  }
+
+  const parts = [];
+  let current = '';
+  let angleDepth = 0;
+  let parenDepth = 0;
+
+  for (const character of value) {
+    if (character === '<') {
+      angleDepth++;
+    } else if (character === '>') {
+      angleDepth--;
+    } else if (character === '(') {
+      parenDepth++;
+    } else if (character === ')') {
+      parenDepth--;
+    }
+
+    if (character === separator && !angleDepth && !parenDepth) {
+      parts.push(current.trim());
+      current = '';
+
+      continue;
+    }
+
+    current += character;
+  }
+
+  if (current) {
+    parts.push(current.trim());
+  }
+
+  return parts;
+}
+
+/**
+ * @param {string[]} types
+ *
+ * @returns {string}
+ */
+function joinTypes(types) {
+  return [ ...new Set(types) ].join(' | ');
+}
+
+/**
+ * @param {string} value
+ *
+ * @returns {string}
+ */
+function decodeHtmlEntities(value) {
+  return value
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, '\'');
+}
+
+/**
+ * List of standard FEEL built-in functions (excluding Camunda-specific extensions).
+ *
+ * @type { RawBuiltin[] }
+ */
+const rawFeelBuiltins = /** FEEL_BUILTINS_PLACEHOLDER */ [];
 
 /**
  * List of standard FEEL built-in functions (excluding Camunda-specific extensions).
  *
  * @type { Builtin[] }
  */
-export const feelBuiltins = /** FEEL_BUILTINS_PLACEHOLDER */ [];
+export const feelBuiltins = rawFeelBuiltins.map(enrichBuiltin);
+
+/**
+ * List of FEEL camunda extensions.
+ *
+ * @type { RawBuiltin[] }
+ */
+const rawCamundaExtensions = /** CAMUNDA_EXTENSIONS_PLACEHOLDER */ [];
 
 /**
  * List of FEEL camunda extensions.
  *
  * @type { Builtin[] }
  */
-export const camundaExtensions = /** CAMUNDA_EXTENSIONS_PLACEHOLDER */ [];
+export const camundaExtensions = rawCamundaExtensions.map(enrichBuiltin);
 
 /**
  * Collection of builtins of camunda scala FEEL.
@@ -41,6 +234,13 @@ export const camundaBuiltins = [ ...feelBuiltins, ...camundaExtensions ];
 /**
  * Functions using reserved keywords in their name and need to be added to the parser context.
  *
+ * @type { RawBuiltin[] }
+ */
+const rawCamundaReservedNameBuiltins = /** RESERVED_NAME_BUILTINS_PLACEHOLDER */ [];
+
+/**
+ * Functions using reserved keywords in their name and need to be added to the parser context.
+ *
  * @type { Builtin[] }
  */
-export const camundaReservedNameBuiltins = /** RESERVED_NAME_BUILTINS_PLACEHOLDER */ [];
+export const camundaReservedNameBuiltins = rawCamundaReservedNameBuiltins.map(enrichBuiltin);
