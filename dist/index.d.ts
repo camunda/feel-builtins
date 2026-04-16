@@ -37,5 +37,9 @@ export type Builtin = {
    */
   params?: Array<{
     name: string;
+    type: string;
   }>;
+  return: {
+    type: string;
+  };
 };

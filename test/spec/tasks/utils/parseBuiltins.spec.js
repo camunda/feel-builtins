@@ -25,11 +25,16 @@ describe('tasks/parseBuiltins', function() {
       params: [
         {
           name: 'value',
+          type: 'Any'
         },
         {
           name: 'default',
+          type: 'Any'
         },
       ],
+      return: {
+        type: 'Any'
+      }
     });
   });
 
@@ -52,6 +57,73 @@ describe('tasks/parseBuiltins', function() {
       info: descriptor.description,
       type: 'function',
       params: [],
+      return: {
+        type: 'number'
+      }
+    });
+  });
+
+
+  it('should merge overload parameter types', function() {
+
+    // given
+    const descriptor = {
+      name: 'date(from)',
+      description:
+        '<p>Returns a date from the given value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class="language-feel">date(from: string): date\n</code></pre>\n<p>Parses the given string into a date.</p>\n<pre><code class="language-feel">date(from: date and time): date\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class="language-feel">date("2018-04-29")\n// date("2018-04-29")\n</code></pre>\n',
+    };
+
+    // when
+    const builtin = parseBuiltin(descriptor);
+
+    // then
+    expect(builtin).to.eql({
+      name: 'date',
+      info: descriptor.description,
+      type: 'function',
+      params: [
+        {
+          name: 'from',
+          type: 'string | date and time'
+        }
+      ],
+      return: {
+        type: 'date'
+      }
+    });
+  });
+
+
+  it('should fallback to the first parameter type when the return type is omitted', function() {
+
+    // given
+    const descriptor = {
+      name: 'assert(value, condition)',
+      description:
+        '<p><em>Camunda Extension</em></p>\n<p><strong>Function signature</strong></p>\n<pre><code class="language-feel">assert(value: Any, condition: Any)\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class="language-feel">assert(x, x != null)\n// "value"\n</code></pre>\n',
+    };
+
+    // when
+    const builtin = parseBuiltin(descriptor);
+
+    // then
+    expect(builtin).to.eql({
+      name: 'assert',
+      info: descriptor.description,
+      type: 'function',
+      params: [
+        {
+          name: 'value',
+          type: 'Any'
+        },
+        {
+          name: 'condition',
+          type: 'Any'
+        }
+      ],
+      return: {
+        type: 'Any'
+      }
     });
   });
 

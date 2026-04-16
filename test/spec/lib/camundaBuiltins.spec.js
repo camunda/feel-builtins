@@ -55,7 +55,8 @@ describe('camundaBuiltins', function() {
     expectBuiltinProperties(camundaBuiltins, 'get or else', {
       name: 'get or else',
       type: 'function',
-      params: [ { name: 'value' }, { name: 'default' } ],
+      params: [ { name: 'value', type: 'Any' }, { name: 'default', type: 'Any' } ],
+      return: { type: 'Any' }
     });
   });
 
@@ -66,7 +67,32 @@ describe('camundaBuiltins', function() {
     expectBuiltinProperties(camundaBuiltins, 'random number', {
       name: 'random number',
       type: 'function',
-      params: []
+      params: [],
+      return: { type: 'number' }
+    });
+  });
+
+
+  it('should export merged overload types', function() {
+
+    // then
+    expectBuiltinProperties(camundaBuiltins, 'date', {
+      name: 'date',
+      type: 'function',
+      params: [ { name: 'from', type: 'string | date and time' } ],
+      return: { type: 'date' }
+    });
+  });
+
+
+  it('should export inferred return types when the signature omits them', function() {
+
+    // then
+    expectBuiltinProperties(camundaBuiltins, 'assert', {
+      name: 'assert',
+      type: 'function',
+      params: [ { name: 'value', type: 'Any' }, { name: 'condition', type: 'Any' } ],
+      return: { type: 'Any' }
     });
   });
 

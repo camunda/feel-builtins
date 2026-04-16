@@ -13,7 +13,11 @@
  *   type?: 'function',
  *   params?: Array<{
  *     name: string;
+ *     type: string;
  *   }>
+ *   return: {
+ *     type: string;
+ *   }
  * } } Builtin
  */
 

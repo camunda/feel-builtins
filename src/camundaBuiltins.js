@@ -13,7 +13,11 @@
  *   type?: 'function',
  *   params?: Array<{
  *     name: string;
+ *     type: string;
  *   }>
+ *   return: {
+ *     type: string;
+ *   }
  * } } Builtin
  */
 
@@ -28,9 +32,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "negand"
+        "name": "negand",
+        "type": "boolean"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns the logical negation of the given value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">not(negand: boolean): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">not(true)\n// false\n\nnot(null)\n// null\n</code></pre>\n"
   },
   {
@@ -38,12 +46,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "context"
+        "name": "context",
+        "type": "context"
       },
       {
-        "name": "key"
+        "name": "key",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p>Returns the value of the context entry with the given key.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">get value(context: context, key: string): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">get value({foo: 123}, &quot;foo&quot;)\n// 123\n\nget value({a: 1}, &quot;b&quot;)\n// null\n</code></pre>\n"
   },
   {
@@ -51,9 +64,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "context"
+        "name": "context",
+        "type": "context"
       }
     ],
+    "return": {
+      "type": "list<context>"
+    },
     "info": "<p>Returns the entries of the context as a list of key-value-pairs.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">get entries(context: context): list&lt;context&gt;\n</code></pre>\n<p>The return value is a list of contexts. Each context contains two entries for &quot;key&quot; and &quot;value&quot;.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">get entries({foo: 123})\n// [{key: &quot;foo&quot;, value: 123}]\n</code></pre>\n"
   },
   {
@@ -61,15 +78,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "context"
+        "name": "context",
+        "type": "context"
       },
       {
-        "name": "keys"
+        "name": "keys",
+        "type": "list<string>"
       },
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "context"
+    },
     "info": "<p>Adds a new entry with the given value to the context. The path of the entry is defined by the keys. Returns a new context that includes the entry.</p>\n<p>If <code>keys</code> contains the keys <code>[k1, k2]</code> then it adds the nested entry <code>k1.k2 = value</code> to the context.</p>\n<p>If an entry for the same keys already exists in the context, it overrides the value.</p>\n<p>If <code>keys</code> are empty, it returns <code>null</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">context put(context: context, keys: list&lt;string&gt;, value: Any): context\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">context put({x:1}, [&quot;y&quot;], 2)\n// {x:1, y:2}\n\ncontext put({x:1, y: {z:0}}, [&quot;y&quot;, &quot;z&quot;], 2)\n// {x:1, y: {z:2}}\n\ncontext put({x:1}, [&quot;y&quot;, &quot;z&quot;], 2)\n// {x:1, y: {z:2}}\n</code></pre>\n"
   },
   {
@@ -77,9 +100,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns the given value as a string representation.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">string(from: Any): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">string(1.1)\n// &quot;1.1&quot;\n\nstring(date(&quot;2012-12-25&quot;))\n// &quot;2012-12-25&quot;\n</code></pre>\n"
   },
   {
@@ -87,9 +114,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Parses the given string to a number.</p>\n<p>Returns <code>null</code> if the string is not a number.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">number(from: string): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">number(&quot;1500.5&quot;)\n// 1500.5\n</code></pre>\n"
   },
   {
@@ -97,12 +128,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "string"
       },
       {
-        "name": "grouping separator"
+        "name": "grouping separator",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Parses the given string to a number using the specified grouping separator.</p>\n<p>Returns <code>null</code> if the string is not a number.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">number(from: string, grouping separator: string): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">number(&quot;1,500&quot;, &quot;,&quot;)\n// 1500\n</code></pre>\n"
   },
   {
@@ -110,15 +146,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "string"
       },
       {
-        "name": "grouping separator"
+        "name": "grouping separator",
+        "type": "string"
       },
       {
-        "name": "decimal separator"
+        "name": "decimal separator",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Parses the given string to a number using the specified grouping and decimal separators.</p>\n<p>Returns <code>null</code> if the string is not a number.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">number(from: string, grouping separator: string, decimal separator: string): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">number(&quot;1 500.5&quot;, &quot; &quot;, &quot;.&quot;)\n// 1500.5\n</code></pre>\n"
   },
   {
@@ -126,9 +168,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "entries"
+        "name": "entries",
+        "type": "list<context>"
       }
     ],
+    "return": {
+      "type": "context"
+    },
     "info": "<p>Constructs a context of the given list of key-value pairs. It is the reverse function to <a href=\"feel-built-in-functions-context.md#get-entriescontext\">get entries()</a>.</p>\n<p>Each key-value pair must be a context with two entries: <code>key</code> and <code>value</code>. The entry with name <code>key</code> must have a value of the type <code>string</code>.</p>\n<p>It might override context entries if the keys are equal. The entries are overridden in the same order as the contexts in the given list.</p>\n<p>Returns <code>null</code> if one of the entries is not a context or if a context doesn&#39;t contain the required entries.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">context(entries: list&lt;context&gt;): context\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">context([{&quot;key&quot;:&quot;a&quot;, &quot;value&quot;:1}, {&quot;key&quot;:&quot;b&quot;, &quot;value&quot;:2}])\n// {a:1, b:2}\n</code></pre>\n"
   },
   {
@@ -136,9 +182,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "string | date and time"
       }
     ],
+    "return": {
+      "type": "date"
+    },
     "info": "<p>Returns a date from the given value.</p>\n<p>Returns <code>null</code> if the string is not a valid calendar date. For example, <code>&quot;2024-06-31&quot;</code> is invalid because June has\nonly 30 days.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">date(from: string): date\n</code></pre>\n<p>Parses the given string into a date.</p>\n<pre><code class=\"language-feel\">date(from: date and time): date\n</code></pre>\n<p>Extracts the date component from the given date and time.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">date(&quot;2018-04-29&quot;)\n// date(&quot;2018-04-29&quot;)\n\ndate(date and time(&quot;2012-12-25T11:00:00&quot;))\n// date(&quot;2012-12-25&quot;)\n</code></pre>\n"
   },
   {
@@ -146,15 +196,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "year"
+        "name": "year",
+        "type": "number"
       },
       {
-        "name": "month"
+        "name": "month",
+        "type": "number"
       },
       {
-        "name": "day"
+        "name": "day",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "date"
+    },
     "info": "<p>Returns a date from the given components.</p>\n<p>Returns <code>null</code> if the components don&#39;t represent a valid calendar date. For example, <code>2024,6,31</code> is invalid because\nJune has only 30 days.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">date(year: number, month: number, day: number): date\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">date(2012, 12, 25)\n// date(&quot;2012-12-25&quot;)\n</code></pre>\n"
   },
   {
@@ -162,9 +218,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "string | date and time"
       }
     ],
+    "return": {
+      "type": "time"
+    },
     "info": "<p>Returns a time from the given value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">time(from: string): time\n</code></pre>\n<p>Parses the given string into a time.</p>\n<pre><code class=\"language-feel\">time(from: date and time): time\n</code></pre>\n<p>Extracts the time component from the given date and time.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">time(&quot;12:00:00&quot;)\n// time(&quot;12:00:00&quot;)\n\ntime(date and time(&quot;2012-12-25T11:00:00&quot;))\n// time(&quot;11:00:00&quot;)\n</code></pre>\n"
   },
   {
@@ -172,15 +232,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "hour"
+        "name": "hour",
+        "type": "number"
       },
       {
-        "name": "minute"
+        "name": "minute",
+        "type": "number"
       },
       {
-        "name": "second"
+        "name": "second",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "time"
+    },
     "info": "<p>Returns a time from the given components.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">time(hour: number, minute: number, second: number): time\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">time(23, 59, 0)\n// time(&quot;23:59:00&quot;)\n</code></pre>\n"
   },
   {
@@ -188,18 +254,25 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "hour"
+        "name": "hour",
+        "type": "number"
       },
       {
-        "name": "minute"
+        "name": "minute",
+        "type": "number"
       },
       {
-        "name": "second"
+        "name": "second",
+        "type": "number"
       },
       {
-        "name": "offset"
+        "name": "offset",
+        "type": "days and time duration"
       }
     ],
+    "return": {
+      "type": "time"
+    },
     "info": "<p>Returns a time from the given components, including a timezone offset.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">time(hour: number, minute: number, second: number, offset: days and time duration): time\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">time(14, 30, 0, duration(&quot;PT1H&quot;))\n// time(&quot;14:30:00+01:00&quot;)\n</code></pre>\n"
   },
   {
@@ -207,9 +280,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "date and time"
+    },
     "info": "<p>Parses the given string into a date and time. The function supports strings in the format <code>YYYY-MM-DDThh:mm:ss</code> with\noptional timezone information either as offset (e.g., <code>+01:00</code> or <code>Z</code>), as IANA timezone ID (e.g., <code>@Europe/Berlin</code>), or\nas a combination of both (e.g., <code>+01:00[Europe/Berlin]</code>).</p>\n<p>Returns <code>null</code> if the string is not a valid calendar date. For example, <code>&quot;2024-06-31T10:00:00&quot;</code> is invalid because\nJune has only 30 days.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">date and time(from: string): date and time\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">date and time(&quot;2018-04-29T09:30:00&quot;)\n// date and time(&quot;2018-04-29T09:30:00&quot;)\n\ndate and time(&quot;2018-04-29T09:30:00+02:00&quot;)\n// date and time(&quot;2018-04-29T09:30:00+02:00&quot;)\n\ndate and time(&quot;2018-04-29T09:30:00@Europe/Berlin&quot;)\n// date and time(&quot;2018-04-29T09:30:00@Europe/Berlin&quot;)\n\ndate and time(&quot;2018-04-29T09:30:00+02:00[Europe/Berlin]&quot;)\n// date and time(&quot;2018-04-29T09:30:00@Europe/Berlin&quot;)\n</code></pre>\n"
   },
   {
@@ -217,12 +294,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "date"
+        "name": "date",
+        "type": "date | date and time"
       },
       {
-        "name": "time"
+        "name": "time",
+        "type": "time"
       }
     ],
+    "return": {
+      "type": "date and time"
+    },
     "info": "<p>Returns a date and time from the given components.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">date and time(date: date, time: time): date and time\n</code></pre>\n<pre><code class=\"language-feel\">date and time(date: date and time, time: time): date and time\n</code></pre>\n<p>Returns a date and time value that consists of the date component of <code>date</code> combined with <code>time</code>.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">date and time(date(&quot;2012-12-24&quot;),time(&quot;T23:59:00&quot;))\n// date and time(&quot;2012-12-24T23:59:00&quot;)\n\ndate and time(date and time(&quot;2012-12-25T11:00:00&quot;),time(&quot;T23:59:00&quot;))\n// date and time(&quot;2012-12-25T23:59:00&quot;)\n</code></pre>\n"
   },
   {
@@ -230,9 +312,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "days and time duration | years and months duration"
+    },
     "info": "<p>Parses the given string into a duration. The duration is either a days and time duration or a years and months duration.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">duration(from: string): days and time duration\n</code></pre>\n<pre><code class=\"language-feel\">duration(from: string): years and months duration\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">duration(&quot;P5D&quot;)\n// duration(&quot;P5D&quot;)\n\nduration(&quot;P32Y&quot;)\n// duration(&quot;P32Y&quot;)\n</code></pre>\n"
   },
   {
@@ -240,12 +326,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "from"
+        "name": "from",
+        "type": "date"
       },
       {
-        "name": "to"
+        "name": "to",
+        "type": "date"
       }
     ],
+    "return": {
+      "type": "years and months duration"
+    },
     "info": "<p>Returns the years and months duration between <code>from</code> and <code>to</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">years and months duration(from: date, to: date): years and months duration\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">years and months duration(date(&quot;2011-12-22&quot;), date(&quot;2013-08-24&quot;))\n// duration(&quot;P1Y8M&quot;)\n</code></pre>\n"
   },
   {
@@ -253,9 +344,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p>Parses a JSON string into a FEEL value. The function converts JSON primitives, objects, and arrays into their corresponding FEEL types.</p>\n<p>Returns <code>null</code> if the string is not a valid JSON value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">from json(value: string): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">from json(&quot;{\\&quot;a\\&quot;: 1, \\&quot;b\\&quot;: 2}&quot;)\n// {a: 1, b: 2}\n\nfrom json(&quot;true&quot;)\n// true\n\nfrom json(&quot;\\&quot;2023-06-14\\&quot;&quot;)\n// &quot;2023-06-14&quot;\n</code></pre>\n"
   },
   {
@@ -263,9 +358,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Converts a FEEL value into a JSON string. The function converts FEEL primitives, contexts, and lists into their\ncorresponding JSON types. Temporal values are converted to their ISO 8601 string representation, including timezone\ninformation for date and time values (format: <code>2025-11-24T10:00:00+01:00[Europe/Berlin]</code>).</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">to json(value: Any): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">to json({a: 1, b: 2})\n// &quot;{\\&quot;a\\&quot;:1,\\&quot;b\\&quot;:2}&quot;\n\nto json(true)\n// &quot;true&quot;\n\nto json(@&quot;2023-06-14&quot;)\n// &quot;\\&quot;2023-06-14\\&quot;&quot;\n\nto json(@&quot;2025-11-24T10:00:00@Europe/Berlin&quot;)\n// &quot;\\&quot;2025-11-24T10:00:00+01:00[Europe/Berlin]\\&quot;&quot;\n\nto json(@&quot;P3Y&quot;)\n// &quot;\\&quot;P3Y\\&quot;&quot;\n</code></pre>\n"
   },
   {
@@ -273,12 +372,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "element"
+        "name": "element",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given list contains the element. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">list contains(list: list, element: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">list contains([1,2,3], 2)\n// true\n</code></pre>\n"
   },
   {
@@ -286,9 +390,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the number of elements of the given list.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">count(list: list): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">count([1,2,3])\n// 3\n</code></pre>\n"
   },
   {
@@ -296,9 +404,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p>Returns the minimum of the given list.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">min(list: list): Any\n</code></pre>\n<p>All elements in <code>list</code> should have the same type and be comparable.</p>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">min([1,2,3])\n// 1\n\nmin(1,2,3)\n// 1\n</code></pre>\n"
   },
   {
@@ -306,9 +418,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p>Returns the maximum of the given list.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">max(list: list): Any\n</code></pre>\n<p>All elements in <code>list</code> should have the same type and be comparable.</p>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">max([1,2,3])\n// 3\n\nmax(1,2,3)\n// 3\n</code></pre>\n"
   },
   {
@@ -316,9 +432,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<number>"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the sum of the given list of numbers.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">sum(list: list&lt;number&gt;): number\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">sum([1,2,3])\n// 6\n\nsum(1,2,3)\n// 6\n</code></pre>\n"
   },
   {
@@ -326,9 +446,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<number>"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the product of the given list of numbers.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">product(list: list&lt;number&gt;): number\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">product([2, 3, 4])\n// 24\n\nproduct(2, 3, 4)\n// 24\n</code></pre>\n"
   },
   {
@@ -336,9 +460,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<number>"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the arithmetic mean (i.e. average) of the given list of numbers.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">mean(list: list&lt;number&gt;): number\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">mean([1,2,3])\n// 2\n\nmean(1,2,3)\n// 2\n</code></pre>\n"
   },
   {
@@ -346,9 +474,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<number>"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the median element of the given list of numbers.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">median(list: list&lt;number&gt;): number\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">median(8, 2, 5, 3, 4)\n// 4\n\nmedian([6, 1, 2, 3])\n// 2.5\n</code></pre>\n"
   },
   {
@@ -356,9 +488,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<number>"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the standard deviation of the given list of numbers.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">stddev(list: list&lt;number&gt;): number\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">stddev(2, 4, 7, 5)\n// 2.0816659994661326\n\nstddev([2, 4, 7, 5])\n// 2.0816659994661326\n</code></pre>\n"
   },
   {
@@ -366,9 +502,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<number>"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the mode of the given list of numbers.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">mode(list: list&lt;number&gt;): number\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">mode(6, 3, 9, 6, 6)\n// [6]\n\nmode([6, 1, 9, 6, 1])\n// [1, 6]\n</code></pre>\n"
   },
   {
@@ -376,9 +516,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<boolean>"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>false</code> if any element of the given list is <code>false</code>. Otherwise, returns <code>true</code>.</p>\n<p>If the given list is empty, it returns <code>true</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">all(list: list&lt;boolean&gt;): boolean\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">all([true,false])\n// false\n\nall(false,null,true)\n// false\n</code></pre>\n<p>:::info\nThe function <code>all()</code> replaced the previous function <code>and()</code>. The previous function is deprecated and\nshould not be used anymore.\n:::</p>\n"
   },
   {
@@ -386,9 +530,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<boolean>"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if any element of the given list is <code>true</code>. Otherwise, returns <code>false</code>.</p>\n<p>If the given list is empty, it returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">any(list: list&lt;boolean&gt;): boolean\n</code></pre>\n<p>The parameter <code>list</code> can be passed as a list or as a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">any([false,true])\n// true\n\nany(false,null,true)\n// true\n</code></pre>\n<p>:::info\nThe function <code>any()</code> replaced the previous function <code>or()</code>. The previous function is deprecated and\nshould not be used anymore.\n:::</p>\n"
   },
   {
@@ -396,12 +544,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "start position"
+        "name": "start position",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns a partial list of the given value starting at <code>start position</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">sublist(list: list, start position: number): list\n</code></pre>\n<p>The <code>start position</code> starts at the index <code>1</code>. The last position is <code>-1</code>.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">sublist([1,2,3], 2)\n// [2,3]\n</code></pre>\n"
   },
   {
@@ -409,15 +562,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "start position"
+        "name": "start position",
+        "type": "number"
       },
       {
-        "name": "length"
+        "name": "length",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns a partial list of the given value starting at <code>start position</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">sublist(list: list, start position: number, length: number): list\n</code></pre>\n<p>The <code>start position</code> starts at the index <code>1</code>. The last position is <code>-1</code>.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">sublist([1,2,3], 1, 2)\n// [1,2]\n</code></pre>\n"
   },
   {
@@ -425,12 +584,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "items"
+        "name": "items",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns the given list with all <code>items</code> appended.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">append(list: list, items: Any): list\n</code></pre>\n<p>The parameter <code>items</code> can be a single element or a sequence of elements.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">append([1], 2, 3)\n// [1,2,3]\n</code></pre>\n"
   },
   {
@@ -438,9 +602,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "lists"
+        "name": "lists",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns a list that includes all elements of the given lists.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">concatenate(lists: list): list\n</code></pre>\n<p>The parameter <code>lists</code> is a sequence of lists.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">concatenate([1,2],[3])\n// [1,2,3]\n\nconcatenate([1],[2],[3])\n// [1,2,3]\n</code></pre>\n"
   },
   {
@@ -448,15 +616,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "position"
+        "name": "position",
+        "type": "number"
       },
       {
-        "name": "newItem"
+        "name": "newItem",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns the given list with <code>newItem</code> inserted at <code>position</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">insert before(list: list, position: number, newItem: Any): list\n</code></pre>\n<p>The <code>position</code> starts at the index <code>1</code>. The last position is <code>-1</code>.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">insert before([1,3],1,2)\n// [2,1,3]\n</code></pre>\n"
   },
   {
@@ -464,12 +638,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "position"
+        "name": "position",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns the given list without the element at <code>position</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">remove(list: list, position: number): list\n</code></pre>\n<p>The <code>position</code> starts at the index <code>1</code>. The last position is <code>-1</code>.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">remove([1,2,3], 2)\n// [1,3]\n</code></pre>\n"
   },
   {
@@ -477,9 +656,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns the given list in revered order.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">reverse(list: list): list\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">reverse([1,2,3])\n// [3,2,1]\n</code></pre>\n"
   },
   {
@@ -487,12 +670,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "match"
+        "name": "match",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "list<number>"
+    },
     "info": "<p>Returns an ascending list of positions containing <code>match</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">index of(list: list, match: Any): list&lt;number&gt;\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">index of([1,2,3,2],2)\n// [2,4]\n</code></pre>\n"
   },
   {
@@ -500,9 +688,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns a list that includes all elements of the given lists without duplicates.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">union(list: list): list\n</code></pre>\n<p>The parameter <code>list</code> is a sequence of lists.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">union([1,2],[2,3])\n// [1,2,3]\n</code></pre>\n"
   },
   {
@@ -510,9 +702,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns the given list without duplicates.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">distinct values(list: list): list\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">distinct values([1,2,3,2,1])\n// [1,2,3]\n</code></pre>\n"
   },
   {
@@ -520,9 +716,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns a list that includes all elements of the given list without nested lists.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">flatten(list: list): list\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">flatten([[1,2],[[3]], 4])\n// [1,2,3,4]\n</code></pre>\n"
   },
   {
@@ -530,12 +730,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "precedes"
+        "name": "precedes",
+        "type": "function<(Any, Any) -> boolean>"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p>Returns the given list sorted by the <code>precedes</code> function.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">sort(list: list, precedes: function&lt;(Any, Any) -&gt; boolean&gt;): list\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">sort(list: [3,1,4,5,2], precedes: function(x,y) x &lt; y)\n// [1,2,3,4,5]\n</code></pre>\n"
   },
   {
@@ -543,9 +748,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<string>"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Joins a list of strings into a single string. This is similar to\nJava&#39;s <a href=\"https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/stream/Collectors.html#joining(java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence)\">joining</a>\nfunction.</p>\n<p>If an item of the list is <code>null</code>, the item is ignored for the result string. If an item is\nneither a string nor <code>null</code>, the function returns <code>null</code> instead of a string.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">string join(list: list&lt;string&gt;): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">string join([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;])\n// &quot;abc&quot;\n\nstring join([&quot;a&quot;,null,&quot;c&quot;])\n// &quot;ac&quot;\n\nstring join([])\n// &quot;&quot;\n</code></pre>\n"
   },
   {
@@ -553,12 +762,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<string>"
       },
       {
-        "name": "delimiter"
+        "name": "delimiter",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Joins a list of strings into a single string. This is similar to\nJava&#39;s <a href=\"https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/stream/Collectors.html#joining(java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence)\">joining</a>\nfunction.</p>\n<p>If an item of the list is <code>null</code>, the item is ignored for the result string. If an item is\nneither a string nor <code>null</code>, the function returns <code>null</code> instead of a string.</p>\n<p>The resulting string contains a <code>delimiter</code> between each element.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">string join(list: list&lt;string&gt;, delimiter: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">string join([&quot;a&quot;], &quot;X&quot;)\n// &quot;a&quot;\n\nstring join([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;], &quot;, &quot;)\n// &quot;a, b, c&quot;\n</code></pre>\n"
   },
   {
@@ -566,12 +780,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       },
       {
-        "name": "scale"
+        "name": "scale",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value at the given scale.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">decimal(n: number, scale: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">decimal(1/3, 2)\n// .33\n\ndecimal(1.5, 0)\n// 2\n</code></pre>\n"
   },
   {
@@ -579,9 +798,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with rounding mode flooring.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">floor(n: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">floor(1.5)\n// 1\n\nfloor(-1.5)\n// -2\n</code></pre>\n"
   },
   {
@@ -589,12 +812,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       },
       {
-        "name": "scale"
+        "name": "scale",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with rounding mode flooring at the given scale.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">floor(n: number, scale: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">floor(-1.56, 1)\n// -1.6\n</code></pre>\n"
   },
   {
@@ -602,9 +830,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with rounding mode ceiling.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">ceiling(n: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">ceiling(1.5)\n// 2\n\nceiling(-1.5)\n// -1\n</code></pre>\n"
   },
   {
@@ -612,12 +844,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       },
       {
-        "name": "scale"
+        "name": "scale",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with rounding mode ceiling at the given scale.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">ceiling(n: number, scale: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">ceiling(-1.56, 1)\n// -1.5\n</code></pre>\n"
   },
   {
@@ -625,12 +862,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       },
       {
-        "name": "scale"
+        "name": "scale",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with the rounding mode round-up at the given scale.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">round up(n: number, scale: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">round up(5.5)\n// 6\n\nround up(-5.5)\n// -6\n\nround up(1.121, 2)\n// 1.13\n\nround up(-1.126, 2)\n// -1.13\n</code></pre>\n"
   },
   {
@@ -638,12 +880,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       },
       {
-        "name": "scale"
+        "name": "scale",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with the rounding mode round-down at the given scale.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">round down(n: number, scale: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">round down(5.5, 0)\n// 5\n\nround down (-5.5, 0)\n// -5\n\nround down (1.121, 2)\n// 1.12\n\nround down (-1.126, 2)\n// -1.12\n</code></pre>\n"
   },
   {
@@ -651,12 +898,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       },
       {
-        "name": "scale"
+        "name": "scale",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with the rounding mode round-half-up at the given scale.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">round half up(n: number, scale: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">round half up(5.5, 0)\n// 6\n\nround half up(-5.5, 0)\n// -6\n\nround half up(1.121, 2)\n// 1.12\n\nround half up(-1.126, 2)\n// -1.13\n</code></pre>\n"
   },
   {
@@ -664,12 +916,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "number"
       },
       {
-        "name": "scale"
+        "name": "scale",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Rounds the given value with the rounding mode round-half-down at the given scale.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">round half down(n: number, scale: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">round half down (5.5, 0)\n// 5\n\nround half down (-5.5, 0)\n// -5\n\nround half down (1.121, 2)\n// 1.12\n\nround half down (-1.126, 2)\n// -1.13\n</code></pre>\n"
   },
   {
@@ -677,9 +934,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "number"
+        "name": "number",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the absolute value of the given numeric value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">abs(number: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">abs(10)\n// 10\n\nabs(-10)\n// 10\n</code></pre>\n"
   },
   {
@@ -687,12 +948,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "dividend"
+        "name": "dividend",
+        "type": "number"
       },
       {
-        "name": "divisor"
+        "name": "divisor",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the remainder of the division of dividend by divisor.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">modulo(dividend: number, divisor: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">modulo(12, 5)\n// 2\n</code></pre>\n"
   },
   {
@@ -700,9 +966,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "number"
+        "name": "number",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the square root of the given value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">sqrt(number: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">sqrt(16)\n// 4\n</code></pre>\n"
   },
   {
@@ -710,9 +980,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "number"
+        "name": "number",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the natural logarithm (base e) of the given value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">log(number: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">log(10)\n// 2.302585092994046\n</code></pre>\n"
   },
   {
@@ -720,9 +994,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "number"
+        "name": "number",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the Euler’s number e raised to the power of the given number .</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">exp(number: number): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">exp(5)\n// 148.4131591025766\n</code></pre>\n"
   },
   {
@@ -730,9 +1008,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "number"
+        "name": "number",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given value is odd. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">odd(number: number): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">odd(5)\n// true\n\nodd(2)\n// false\n</code></pre>\n"
   },
   {
@@ -740,9 +1022,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "number"
+        "name": "number",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given is even. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">even(number: number): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">even(5)\n// false\n\neven(2)\n// true\n</code></pre>\n"
   },
   {
@@ -750,12 +1036,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point1"
+        "name": "point1",
+        "type": "Any"
       },
       {
-        "name": "point2"
+        "name": "point2",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">before(point1: Any, point2: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">before(1, 10)\n// true\n\nbefore(10, 1)\n// false\n</code></pre>\n"
   },
   {
@@ -763,12 +1054,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       },
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">before(range: range, point: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">before([1..5], 10)\n// true\n</code></pre>\n"
   },
   {
@@ -776,12 +1072,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       },
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">before(point: Any, range: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">before(1, [2..5])\n// true\n</code></pre>\n"
   },
   {
@@ -789,12 +1090,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">before(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">before([1..5], [6..10])\n// true\n\nbefore([1..5),[5..10])\n// true\n</code></pre>\n"
   },
   {
@@ -802,12 +1108,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point1"
+        "name": "point1",
+        "type": "Any"
       },
       {
-        "name": "point2"
+        "name": "point2",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">after(point1: Any, point2: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">after(10, 1)\n// true\n\nafter(1, 10)\n// false\n</code></pre>\n"
   },
   {
@@ -815,12 +1126,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       },
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">after(range: range, point: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">after([1..5], 10)\n// false\n</code></pre>\n"
   },
   {
@@ -828,12 +1144,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       },
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">after(point: Any, range: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">after(12, [2..5])\n// true\n</code></pre>\n"
   },
   {
@@ -841,12 +1162,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">after(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">after([6..10], [1..5])\n// true\n\nafter([5..10], [1..5))\n// true\n</code></pre>\n"
   },
   {
@@ -854,12 +1180,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">meets(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">meets([1..5], [5..10])\n// true\n\nmeets([1..3], [4..6])\n// false\n\nmeets([1..3], [3..5])\n// true\n\nmeets([1..5], (5..8])\n// false\n</code></pre>\n"
   },
   {
@@ -867,12 +1198,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">met by(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">met by([5..10], [1..5])\n// true\n\nmet by([3..4], [1..2])\n// false\n\nmet by([3..5], [1..3])\n// true\n\nmet by((5..8], [1..5))\n// false\n\nmet by([5..10], [1..5))\n// false\n</code></pre>\n"
   },
   {
@@ -880,12 +1216,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">overlaps(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">overlaps([5..10], [1..6])\n// true\n\noverlaps((3..7], [1..4])\n// true\n\noverlaps([1..3], (3..6])\n// false\n\noverlaps((5..8], [1..5))\n// false\n\noverlaps([4..10], [1..5))\n// true\n</code></pre>\n"
   },
   {
@@ -893,12 +1234,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">overlaps before(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">overlaps before([1..5], [4..10])\n// true\n\noverlaps before([3..4], [1..2])\n// false\n\noverlaps before([1..3], (3..5])\n// false\n\noverlaps before([1..5), (3..8])\n// true\n\noverlaps before([1..5), [5..10])\n// false\n</code></pre>\n"
   },
   {
@@ -906,12 +1252,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">overlaps after(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">overlaps after([4..10], [1..5])\n// true\n\noverlaps after([3..4], [1..2])\n// false\n\noverlaps after([3..5], [1..3))\n// false\n\noverlaps after((5..8], [1..5))\n// false\n\noverlaps after([4..10], [1..5))\n// true\n</code></pre>\n"
   },
   {
@@ -919,12 +1270,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       },
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">finishes(point: Any, range: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">finishes(5, [1..5])\n// true\n\nfinishes(10, [1..7])\n// false\n</code></pre>\n"
   },
   {
@@ -932,12 +1288,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">finishes(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">finishes([3..5], [1..5])\n// true\n\nfinishes((1..5], [1..5))\n// false\n\nfinishes([5..10], [1..10))\n// false\n</code></pre>\n"
   },
   {
@@ -945,12 +1306,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       },
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">finished by(range: range, point: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">finished by([5..10], 10)\n// true\n\nfinished by([3..4], 2)\n// false\n</code></pre>\n"
   },
   {
@@ -958,12 +1324,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">finished by(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">finished by([1..5], [3..5])\n// true\n\nfinished by((5..8], [1..5))\n// false\n\nfinished by([5..10], (1..10))\n// false\n</code></pre>\n"
   },
   {
@@ -971,12 +1342,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       },
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">includes(range: range, point: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">includes([5..10], 6)\n// true\n\nincludes([3..4], 5)\n// false\n</code></pre>\n"
   },
   {
@@ -984,12 +1360,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">includes(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">includes([1..10], [4..6])\n// true\n\nincludes((5..8], [1..5))\n// false\n\nincludes([1..10], [1..5))\n// true\n</code></pre>\n"
   },
   {
@@ -997,12 +1378,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       },
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">during(point: Any, range: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">during(5, [1..10])\n// true\n\nduring(12, [1..10])\n// false\n\nduring(1, (1..10])\n// false\n</code></pre>\n"
   },
   {
@@ -1010,12 +1396,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">during(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">during([4..6], [1..10))\n// true\n\nduring((1..5], (1..10])\n// true\n</code></pre>\n"
   },
   {
@@ -1023,12 +1414,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       },
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">starts(point: Any, range: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">starts(1, [1..5])\n// true\n\nstarts(1, (1..8])\n// false\n</code></pre>\n"
   },
   {
@@ -1036,12 +1432,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">starts(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">starts((1..5], [1..5])\n// false\n\nstarts([1..10], [1..5])\n// false\n\nstarts((1..5), (1..10))\n// true\n</code></pre>\n"
   },
   {
@@ -1049,12 +1450,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range"
+        "name": "range",
+        "type": "range"
       },
       {
-        "name": "point"
+        "name": "point",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">started by(range: range, point: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">started by([1..10], 1)\n// true\n\nstarted by((1..10], 1)\n// false\n</code></pre>\n"
   },
   {
@@ -1062,12 +1468,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">started by(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">started by([1..10], [1..5])\n// true\n\nstarted by((1..10], [1..5))\n// false\n\nstarted by([1..10], [1..10))\n// true\n</code></pre>\n"
   },
   {
@@ -1075,12 +1486,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "point1"
+        "name": "point1",
+        "type": "Any"
       },
       {
-        "name": "point2"
+        "name": "point2",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">coincides(point1: Any, point2: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">coincides(5, 5)\n// true\n\ncoincides(3, 4)\n// false\n</code></pre>\n"
   },
   {
@@ -1088,12 +1504,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "range1"
+        "name": "range1",
+        "type": "range"
       },
       {
-        "name": "range2"
+        "name": "range2",
+        "type": "range"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">coincides(range1: range, range2: range): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">coincides([1..5], [1..5])\n// true\n\ncoincides((1..5], [1..5))\n// false\n\ncoincides([1..5], [2..6])\n// false\n</code></pre>\n"
   },
   {
@@ -1101,12 +1522,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "start position"
+        "name": "start position",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns a substring of the given value starting at <code>start position</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">substring(string: string, start position: number): string\n</code></pre>\n<p>The <code>start position</code> starts at the index <code>1</code>. The last position is <code>-1</code>.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">substring(&quot;foobar&quot;, 3)\n// &quot;obar&quot;\n\nsubstring(&quot;foobar&quot;, -2)\n// &quot;ar&quot;\n</code></pre>\n"
   },
   {
@@ -1114,15 +1540,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "start position"
+        "name": "start position",
+        "type": "number"
       },
       {
-        "name": "length"
+        "name": "length",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns a substring of the given value, starting at <code>start position</code> with the given <code>length</code>. If <code>length</code> is greater than\nthe remaining characters of the value, it returns all characters from <code>start position</code> until the end.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">substring(string: string, start position: number, length: number): string\n</code></pre>\n<p>The <code>start position</code> starts at the index <code>1</code>. The last position is <code>-1</code>.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">substring(&quot;foobar&quot;, 3, 3)\n// &quot;oba&quot;\n\nsubstring(&quot;foobar&quot;, -3, 2)\n// &quot;ba&quot;\n\nsubstring(&quot;foobar&quot;, 3, 10)\n// &quot;obar&quot;\n</code></pre>\n"
   },
   {
@@ -1130,9 +1562,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the number of characters in the given value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">string length(string: string): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">string length(&quot;foo&quot;)\n// 3\n</code></pre>\n"
   },
   {
@@ -1140,9 +1576,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns the given value with all characters are uppercase.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">upper case(string: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">upper case(&quot;aBc4&quot;)\n// &quot;ABC4&quot;\n</code></pre>\n"
   },
   {
@@ -1150,9 +1590,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns the given value with all characters are lowercase.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">lower case(string: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">lower case(&quot;aBc4&quot;)\n// &quot;abc4&quot;\n</code></pre>\n"
   },
   {
@@ -1160,12 +1604,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "match"
+        "name": "match",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns a substring of the given value that contains all characters before <code>match</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">substring before(string: string, match: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">substring before(&quot;foobar&quot;, &quot;bar&quot;)\n// &quot;foo&quot;\n</code></pre>\n"
   },
   {
@@ -1173,12 +1622,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "match"
+        "name": "match",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns a substring of the given value that contains all characters after <code>match</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">substring after(string: string, match: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">substring after(&quot;foobar&quot;, &quot;ob&quot;)\n// &quot;ar&quot;\n</code></pre>\n"
   },
   {
@@ -1186,12 +1640,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "match"
+        "name": "match",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given value contains the substring <code>match</code>. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">contains(string: string, match: string): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">contains(&quot;foobar&quot;, &quot;of&quot;)\n// false\n</code></pre>\n"
   },
   {
@@ -1199,12 +1658,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "match"
+        "name": "match",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given value starts with the substring <code>match</code>. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">starts with(string: string, match: string): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">starts with(&quot;foobar&quot;, &quot;fo&quot;)\n// true\n</code></pre>\n"
   },
   {
@@ -1212,12 +1676,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "match"
+        "name": "match",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given value ends with the substring <code>match</code>. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">ends with(string: string, match: string): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">ends with(&quot;foobar&quot;, &quot;r&quot;)\n// true\n</code></pre>\n"
   },
   {
@@ -1225,12 +1694,17 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "input"
+        "name": "input",
+        "type": "string"
       },
       {
-        "name": "pattern"
+        "name": "pattern",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given value matches the <code>pattern</code>. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">matches(input: string, pattern: string): boolean\n</code></pre>\n<p>The <code>pattern</code> is a string that contains a regular expression.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">matches(&quot;foobar&quot;, &quot;^fo*bar&quot;)\n// true\n</code></pre>\n"
   },
   {
@@ -1238,15 +1712,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "input"
+        "name": "input",
+        "type": "string"
       },
       {
-        "name": "pattern"
+        "name": "pattern",
+        "type": "string"
       },
       {
-        "name": "flags"
+        "name": "flags",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p>Returns <code>true</code> if the given value matches the <code>pattern</code>. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">matches(input: string, pattern: string, flags: string): boolean\n</code></pre>\n<p>The <code>pattern</code> is a string that contains a regular expression.</p>\n<p>The <code>flags</code> can contain one or more of the following characters:</p>\n<ul>\n<li><code>s</code> (dot-all)</li>\n<li><code>m</code> (multi-line)</li>\n<li><code>i</code> (case insensitive)</li>\n<li><code>x</code> (comments)</li>\n</ul>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">matches(&quot;FooBar&quot;, &quot;foo&quot;, &quot;i&quot;)\n// true\n</code></pre>\n"
   },
   {
@@ -1254,15 +1734,21 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "input"
+        "name": "input",
+        "type": "string"
       },
       {
-        "name": "pattern"
+        "name": "pattern",
+        "type": "string"
       },
       {
-        "name": "replacement"
+        "name": "replacement",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns the resulting string after replacing all occurrences of <code>pattern</code> with <code>replacement</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">replace(input: string, pattern: string, replacement: string): string\n</code></pre>\n<p>The <code>pattern</code> is a string that contains a regular expression.</p>\n<p>The <code>replacement</code> can access the match groups by using <code>$</code> and the number of the group, for example,\n<code>$1</code> to access the first group.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">replace(&quot;abcd&quot;, &quot;(ab)|(a)&quot;, &quot;[1=$1][2=$2]&quot;)\n// &quot;[1=ab][2=]cd&quot;\n\nreplace(&quot;0123456789&quot;, &quot;(\\d{3})(\\d{3})(\\d{4})&quot;, &quot;($1) $2-$3&quot;)\n// &quot;(012) 345-6789&quot;\n</code></pre>\n"
   },
   {
@@ -1270,18 +1756,25 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "input"
+        "name": "input",
+        "type": "string"
       },
       {
-        "name": "pattern"
+        "name": "pattern",
+        "type": "string"
       },
       {
-        "name": "replacement"
+        "name": "replacement",
+        "type": "string"
       },
       {
-        "name": "flags"
+        "name": "flags",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns the resulting string after replacing all occurrences of <code>pattern</code> with <code>replacement</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">replace(input: string, pattern: string, replacement: string, flags: string): string\n</code></pre>\n<p>The <code>pattern</code> is a string that contains a regular expression.</p>\n<p>The <code>replacement</code> can access the match groups by using <code>$</code> and the number of the group, for example,\n<code>$1</code> to access the first group.</p>\n<p>The <code>flags</code> can contain one or more of the following characters:</p>\n<ul>\n<li><code>s</code> (dot-all)</li>\n<li><code>m</code> (multi-line)</li>\n<li><code>i</code> (case insensitive)</li>\n<li><code>x</code> (comments)</li>\n</ul>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">replace(&quot;How do you feel?&quot;, &quot;Feel&quot;, &quot;FEEL&quot;, &quot;i&quot;)\n// &quot;How do you FEEL?&quot;\n</code></pre>\n"
   },
   {
@@ -1289,24 +1782,35 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "delimiter"
+        "name": "delimiter",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "list<string>"
+    },
     "info": "<p>Splits the given value into a list of substrings, breaking at each occurrence of the <code>delimiter</code> pattern.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">split(string: string, delimiter: string): list&lt;string&gt;\n</code></pre>\n<p>The <code>delimiter</code> is a string that contains a regular expression.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">split(&quot;John Doe&quot;, &quot;\\s&quot; )\n// [&quot;John&quot;, &quot;Doe&quot;]\n\nsplit(&quot;a;b;c;;&quot;, &quot;;&quot;)\n// [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;&quot;, &quot;&quot;]\n</code></pre>\n"
   },
   {
     "name": "now",
     "type": "function",
     "params": [],
+    "return": {
+      "type": "date and time"
+    },
     "info": "<p>Returns the current date and time including the timezone.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">now(): date and time\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">now()\n// date and time(&quot;2020-07-31T14:27:30@Europe/Berlin&quot;)\n</code></pre>\n"
   },
   {
     "name": "today",
     "type": "function",
     "params": [],
+    "return": {
+      "type": "date"
+    },
     "info": "<p>Returns the current date.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">today(): date\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">today()\n// date(&quot;2020-07-31&quot;)\n</code></pre>\n"
   },
   {
@@ -1314,9 +1818,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "date"
+        "name": "date",
+        "type": "date | date and time"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns the day of the week according to the Gregorian calendar. Note that it always returns the English name of the day.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">day of week(date: date): string\n</code></pre>\n<pre><code class=\"language-feel\">day of week(date: date and time): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">day of week(date(&quot;2019-09-17&quot;))\n// &quot;Tuesday&quot;\n\nday of week(date and time(&quot;2019-09-17T12:00:00&quot;))\n// &quot;Tuesday&quot;\n</code></pre>\n"
   },
   {
@@ -1324,9 +1832,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "date"
+        "name": "date",
+        "type": "date | date and time"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the Gregorian number of the day within the year.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">day of year(date: date): number\n</code></pre>\n<pre><code class=\"language-feel\">day of year(date: date and time): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">day of year(date(&quot;2019-09-17&quot;))\n// 260\n\nday of year(date and time(&quot;2019-09-17T12:00:00&quot;))\n// 260\n</code></pre>\n"
   },
   {
@@ -1334,9 +1846,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "date"
+        "name": "date",
+        "type": "date | date and time"
       }
     ],
+    "return": {
+      "type": "number"
+    },
     "info": "<p>Returns the Gregorian number of the week within the year, according to ISO 8601.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">week of year(date: date): number\n</code></pre>\n<pre><code class=\"language-feel\">week of year(date: date and time): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">week of year(date(&quot;2019-09-17&quot;))\n// 38\n\nweek of year(date and time(&quot;2019-09-17T12:00:00&quot;))\n// 38\n</code></pre>\n"
   },
   {
@@ -1344,9 +1860,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "date"
+        "name": "date",
+        "type": "date | date and time"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p>Returns the month of the year according to the Gregorian calendar. Note that it always returns the English name of the month.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">month of year(date: date): string\n</code></pre>\n<pre><code class=\"language-feel\">month of year(date: date and time): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">month of year(date(&quot;2019-09-17&quot;))\n// &quot;September&quot;\n\nmonth of year(date and time(&quot;2019-09-17T12:00:00&quot;))\n// &quot;September&quot;\n</code></pre>\n"
   },
   {
@@ -1354,9 +1874,13 @@ export const feelBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "n"
+        "name": "n",
+        "type": "days and time duration | years and months duration"
       }
     ],
+    "return": {
+      "type": "days and time duration | years and months duration"
+    },
     "info": "<p>Returns the absolute value of a given duration.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">abs(n: days and time duration): days and time duration\n</code></pre>\n<pre><code class=\"language-feel\">abs(n: years and months duration): years and months duration\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">abs(duration(&quot;-PT5H&quot;))\n// &quot;duration(&quot;PT5H&quot;)&quot;\n\nabs(duration(&quot;PT5H&quot;))\n// &quot;duration(&quot;PT5H&quot;)&quot;\n\nabs(duration(&quot;-P2M&quot;))\n// duration(&quot;P2M&quot;)\n</code></pre>\n"
   }
 ];
@@ -1372,9 +1896,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Checks if a given value is not <code>null</code>. If the value is <code>null</code> then the function returns <code>false</code>.\nOtherwise, the function returns <code>true</code>.</p>\n<p>The function requires one argument. Calling <code>is defined()</code> without an argument is invalid.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">is defined(value: Any): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">is defined(1)\n// true\n\nis defined(null)\n// false\n\nis defined(x)\n// false - if no variable &quot;x&quot; exists\n\nis defined(x.y)\n// false - if no variable &quot;x&quot; exists or it doesn&#39;t have a property &quot;y&quot;\n\nis defined()\n// error - expected one argument\n</code></pre>\n<p>:::caution Breaking change</p>\n<p>This function worked differently in previous versions. It returned <code>true</code> if the value was <code>null</code>.\nSince this version, the function returns <code>false</code> if the value is <code>null</code>.</p>\n<p>:::</p>\n"
   },
   {
@@ -1382,12 +1910,17 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "default"
+        "name": "default",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Return the provided value parameter if not <code>null</code>, otherwise return the default parameter</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">get or else(value: Any, default: Any): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">get or else(&quot;this&quot;, &quot;default&quot;)\n// &quot;this&quot;\n\nget or else(null, &quot;default&quot;)\n// &quot;default&quot;\n\nget or else(null, null)\n// null\n</code></pre>\n"
   },
   {
@@ -1395,12 +1928,17 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "condition"
+        "name": "condition",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Verify that the given condition is met. If the condition is <code>true</code>, the function returns the value.\nOtherwise, the evaluation fails with an error.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">assert(value: Any, condition: Any)\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">assert(x, x != null)\n// &quot;value&quot; - if x is &quot;value&quot;\n// error - if x is null or doesn&#39;t exist\n\nassert(x, x &gt;= 0)\n// 4 - if x is 4\n// error - if x is less than zero\n</code></pre>\n"
   },
   {
@@ -1408,15 +1946,21 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "condition"
+        "name": "condition",
+        "type": "Any"
       },
       {
-        "name": "cause"
+        "name": "cause",
+        "type": "String"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Verify that the given condition is met. If the condition is <code>true</code>, the function returns the value.\nOtherwise, the evaluation fails with an error containing the given message.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">assert(value: Any, condition: Any, cause: String)\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">assert(x, x != null, &quot;&#39;x&#39; should not be null&quot;)\n// &quot;value&quot; - if x is &quot;value&quot;\n// error(&#39;x&#39; should not be null) - if x is null or doesn&#39;t exist\n\nassert(x, x &gt;= 0, &quot;&#39;x&#39; should be positive&quot;)\n// 4 - if x is 4\n// error(&#39;x&#39; should be positive) - if x is less than zero\n</code></pre>\n"
   },
   {
@@ -1424,12 +1968,17 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "context"
+        "name": "context",
+        "type": "context"
       },
       {
-        "name": "keys"
+        "name": "keys",
+        "type": "list<string>"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the value of the context entry for a context path defined by the given keys.</p>\n<p>If <code>keys</code> contains the keys <code>[k1, k2]</code> then it returns the value at the nested entry <code>k1.k2</code> of the context.</p>\n<p>If <code>keys</code> are empty or the nested entry defined by the keys doesn&#39;t exist in the context, it returns <code>null</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">get value(context: context, keys: list&lt;string&gt;): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">get value({x:1, y: {z:0}}, [&quot;y&quot;, &quot;z&quot;])\n// 0\n\nget value({x: {y: {z:0}}}, [&quot;x&quot;, &quot;y&quot;])\n// {z:0}\n\nget value({a: {b: 3}}, [&quot;b&quot;])\n// null\n</code></pre>\n"
   },
   {
@@ -1437,15 +1986,21 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "context"
+        "name": "context",
+        "type": "context"
       },
       {
-        "name": "key"
+        "name": "key",
+        "type": "string"
       },
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "context"
+    },
     "info": "<p>Adds a new entry with the given key and value to the context. Returns a new context that includes the entry.</p>\n<p>If an entry for the same key already exists in the context, it overrides the value.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">context put(context: context, key: string, value: Any): context\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">context put({x:1}, &quot;y&quot;, 2)\n// {x:1, y:2}\n</code></pre>\n<p>:::info\nThe function <code>context put()</code> replaced the previous function <code>put()</code> (Camunda Extension). The\nprevious function is deprecated and should not be used anymore.\n:::</p>\n"
   },
   {
@@ -1453,9 +2008,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "contexts"
+        "name": "contexts",
+        "type": "list<context>"
       }
     ],
+    "return": {
+      "type": "context"
+    },
     "info": "<p>Union the given contexts. Returns a new context that includes all entries of the given contexts.</p>\n<p>If an entry for the same key already exists in a context, it overrides the value. The entries are overridden in the same order as in the list of contexts.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">context merge(contexts: list&lt;context&gt;): context\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">context merge([{x:1}, {y:2}])\n// {x:1, y:2}\n\ncontext merge([{x:1, y: 0}, {y:2}])\n// {x:1, y:2}\n</code></pre>\n<p>:::info\nThe function <code>context merge()</code> replaced the previous function <code>put all()</code> (Camunda Extension). The\nprevious function is deprecated and should not be used anymore.\n:::</p>\n"
   },
   {
@@ -1463,12 +2022,17 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "date"
+        "name": "date",
+        "type": "date and time"
       },
       {
-        "name": "timezone"
+        "name": "timezone",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "date and time"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the given date and time value at the given timezone.</p>\n<p>If <code>date</code> has a different timezone than <code>timezone</code> then it adjusts the time to match the local time of <code>timezone</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">date and time(date: date and time, timezone: string): date and time\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">date and time(@&quot;2020-07-31T14:27:30@Europe/Berlin&quot;, &quot;America/Los_Angeles&quot;)\n// date and time(&quot;2020-07-31T05:27:30@America/Los_Angeles&quot;)\n\ndate and time(@&quot;2020-07-31T14:27:30&quot;, &quot;Z&quot;)\n// date and time(&quot;2020-07-31T12:27:30Z&quot;)\n</code></pre>\n"
   },
   {
@@ -1476,9 +2040,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns all duplicate values of the given list.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">duplicate values(list: list): list\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">duplicate values([1,2,3,2,1])\n// [1,2]\n</code></pre>\n"
   },
   {
@@ -1486,18 +2054,25 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list<string>"
       },
       {
-        "name": "delimiter"
+        "name": "delimiter",
+        "type": "string"
       },
       {
-        "name": "prefix"
+        "name": "prefix",
+        "type": "string"
       },
       {
-        "name": "suffix"
+        "name": "suffix",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Joins a list of strings into a single string. This is similar to\nJava&#39;s <a href=\"https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/stream/Collectors.html#joining(java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence)\">joining</a>\nfunction.</p>\n<p>If an item of the list is <code>null</code>, the item is ignored for the result string. If an item is\nneither a string nor <code>null</code>, the function returns <code>null</code> instead of a string.</p>\n<p>The resulting string starts with <code>prefix</code>, contains a <code>delimiter</code> between each element, and ends\nwith <code>suffix</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">string join(list: list&lt;string&gt;, delimiter: string, prefix: string, suffix: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">string join([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;], &quot;, &quot;, &quot;[&quot;, &quot;]&quot;)\n// &quot;[a, b, c]&quot;\n</code></pre>\n"
   },
   {
@@ -1505,9 +2080,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns <code>true</code> if the given list is empty. Otherwise, returns <code>false</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">is empty(list: list): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">is empty([])\n// true\n\nis empty([1,2,3])\n// false\n</code></pre>\n"
   },
   {
@@ -1515,12 +2094,17 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "list"
+        "name": "list",
+        "type": "list"
       },
       {
-        "name": "size"
+        "name": "size",
+        "type": "number"
       }
     ],
+    "return": {
+      "type": "list"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns consecutive sublists of a list, each of the same size (the final list may be smaller).</p>\n<p>If <code>size</code> is less than <code>0</code>, it returns <code>null</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">partition(list: list, size: number): list\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">partition([1,2,3,4,5], 2)\n// [[1,2], [3,4], [5]]\n\npartition([], 2)\n// []\n\npartition([1,2], 0)\n// null\n</code></pre>\n"
   },
   {
@@ -1528,9 +2112,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the unmodified <code>value</code> parameter.</p>\n<ul>\n<li>The purpose of this function is solely to tag the value as being generated by an AI integration.</li>\n<li>The actual handling is not performed by the FEEL engine, but by a custom integration such as a connector or a job worker.</li>\n</ul>\n<p>The main use case of this function is for <a href=\"../../../connectors/out-of-the-box-connectors/agentic-ai-aiagent-tool-definitions.md\">tool definitions</a> used by the <a href=\"../../../connectors/out-of-the-box-connectors/agentic-ai-aiagent.md\">AI Agent connector</a>.</p>\n<p>See the following function overloads for additional function parameters.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">fromAi(value: Any): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">fromAi(toolCall.searchQuery)\n// toolCall.searchQuery contents\n\nfromAi(toolCall.userId)\n// toolCall.userId contents\n</code></pre>\n"
   },
   {
@@ -1538,12 +2126,17 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "description"
+        "name": "description",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the unmodified <code>value</code> parameter.</p>\n<p>In addition to the previous overload, it also accepts an optional <code>description</code> parameter to provide a textual description of the value. The description must be <code>null</code> or a string constant.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">fromAi(value: Any, description: string): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">fromAi(toolCall.searchQuery, &quot;The search query used to find the best match.&quot;)\n// toolCall.searchQuery contents\n\nfromAi(toolCall.searchQuery, null)\n// toolCall.searchQuery contents\n</code></pre>\n"
   },
   {
@@ -1551,15 +2144,21 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "description"
+        "name": "description",
+        "type": "string"
       },
       {
-        "name": "type"
+        "name": "type",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the unmodified <code>value</code> parameter.</p>\n<p>In addition to the previous overload, it also accepts an optional <code>type</code> parameter to provide type information about the value. The type must be <code>null</code> or a string constant.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">fromAi(value: Any, description: string, type: string): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">fromAi(toolCall.searchQuery, &quot;The search query used to find the best match.&quot;, &quot;string&quot;)\n// toolCall.searchQuery contents\n\nfromAi(toolCall.userId, &quot;The user&#39;s ID&quot;, &quot;number&quot;)\n// toolCall.userId contents\n\nfromAi(toolCall.userId, null, &quot;number&quot;)\n// toolCall.userId contents\n\nfromAi(value: toolCall.userId, type: &quot;number&quot;)\n// toolCall.userId contents\n</code></pre>\n"
   },
   {
@@ -1567,18 +2166,25 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "description"
+        "name": "description",
+        "type": "string"
       },
       {
-        "name": "type"
+        "name": "type",
+        "type": "string"
       },
       {
-        "name": "schema"
+        "name": "schema",
+        "type": "context"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the unmodified <code>value</code> parameter.</p>\n<p>In addition to the previous overload, it also accepts an optional <code>schema</code> parameter to provide a (partial) <a href=\"https://json-schema.org/\">JSON schema</a> for the value.</p>\n<ul>\n<li>The schema must be <code>null</code> or a context (map) containing only constant values. For example, function calls within the schema are not supported.</li>\n<li>The schema is not validated by the FEEL engine but might be by a custom integration consuming the information.</li>\n<li>From the engine side it is possible to specify both a <code>type</code> and a <code>schema</code>, and it depends on the integration as to which value takes precedence. The <a href=\"../../../connectors/out-of-the-box-connectors/agentic-ai-aiagent.md\">AI Agent connector</a> will override any type specified in the schema if the <code>type</code> parameter is also provided.</li>\n</ul>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">fromAi(value: Any, description: string, type: string, schema: context): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">fromAi(toolCall.documentType, &quot;The document type to provide&quot;, &quot;string&quot;, {\n  enum: [&quot;invoice&quot;, &quot;receipt&quot;, &quot;contract&quot;]\n})\n// toolCall.documentType contents\n\nfromAi(value: toolCall.documentType, description: &quot;The document type to provide&quot;, schema: {\n  type: &quot;string&quot;,\n  enum: [&quot;invoice&quot;, &quot;receipt&quot;, &quot;contract&quot;]\n})\n// toolCall.documentType contents\n\nfromAi(toolCall.tags, &quot;Tags to apply to the blog post&quot;, &quot;array&quot;, {\n  items: {\n    type: &quot;string&quot;\n  }\n})\n// toolCall.tags contents\n</code></pre>\n"
   },
   {
@@ -1586,27 +2192,38 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "description"
+        "name": "description",
+        "type": "string"
       },
       {
-        "name": "type"
+        "name": "type",
+        "type": "string"
       },
       {
-        "name": "schema"
+        "name": "schema",
+        "type": "context"
       },
       {
-        "name": "options"
+        "name": "options",
+        "type": "context"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the unmodified <code>value</code> parameter.</p>\n<p>In addition to the previous overload, it also accepts an optional <code>options</code> parameter to provide additional options for the integration handling the value definition.</p>\n<ul>\n<li>The options parameter must be <code>null</code> or a context (map) containing only constant values. For example, function calls within options are not supported.</li>\n</ul>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">fromAi(value: Any, description: string, type: string, schema: context, options: context): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">fromAi(toolCall.documentType, &quot;The document type to provide&quot;, &quot;string&quot;, null, {\n  required: false\n})\n// toolCall.documentType contents\n\nfromAi(value: toolCall.documentType, options: {\n  required: false\n})\n// toolCall.documentType contents\n</code></pre>\n"
   },
   {
     "name": "random number",
     "type": "function",
     "params": [],
+    "return": {
+      "type": "number"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns a random number between <code>0</code> and <code>1</code>.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">random number(): number\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">random number()\n// 0.9701618132579795\n</code></pre>\n"
   },
   {
@@ -1614,12 +2231,17 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       },
       {
-        "name": "pattern"
+        "name": "pattern",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "list<string>"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns all matches of the pattern in the given string. Returns an empty list if the pattern doesn&#39;t\nmatch.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">extract(string: string, pattern: string): list&lt;string&gt;\n</code></pre>\n<p>The <code>pattern</code> is a string that contains a regular expression.</p>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">extract(&quot;references are 1234, 1256, 1378&quot;, &quot;12[0-9]*&quot;)\n// [&quot;1234&quot;,&quot;1256&quot;]\n</code></pre>\n"
   },
   {
@@ -1627,15 +2249,22 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the given string without leading and trailing spaces.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">trim(string: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">trim(&quot;  hello world  &quot;)\n// &quot;hello world&quot;\n\ntrim(&quot;hello   world &quot;)\n// &quot;hello   world&quot;\n</code></pre>\n"
   },
   {
     "name": "uuid",
     "type": "function",
     "params": [],
+    "return": {
+      "type": "string"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns a UUID (Universally Unique Identifier) with 36 characters.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">uuid(): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">uuid()\n// &quot;7793aab1-d761-4d38-916b-b7270e309894&quot;\n</code></pre>\n"
   },
   {
@@ -1643,9 +2272,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "string"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the given string encoded in Base64 format.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">to base64(value: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">to base64(&quot;FEEL&quot;)\n// &quot;RkVFTA==&quot;\n</code></pre>\n"
   },
   {
@@ -1653,9 +2286,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "string"
+        "name": "string",
+        "type": "string"
       }
     ],
+    "return": {
+      "type": "boolean"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Returns <code>true</code> if the given string is blank (empty or contains only whitespaces).</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">is blank(string: string): boolean\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">is blank(&quot;&quot;)\n// true\n\nis blank(&quot; &quot;)\n// true\n\nis blank(&quot;hello world&quot;)\n// false\n</code></pre>\n"
   },
   {
@@ -1663,9 +2300,13 @@ export const camundaExtensions = [
     "type": "function",
     "params": [
       {
-        "name": "date"
+        "name": "date",
+        "type": "date | date and time"
       }
     ],
+    "return": {
+      "type": "date"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Takes the month of the given date or date-time value and returns the last day of this month.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">last day of month(date: date): date\n</code></pre>\n<pre><code class=\"language-feel\">last day of month(date: date and time): date\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">last day of month(date(&quot;2022-10-01&quot;))\n// date(&quot;2022-10-31&quot;))\n\nlast day of month(date and time(&quot;2022-10-16T12:00:00&quot;))\n// date(&quot;2022-10-31&quot;))\n</code></pre>\n"
   }
 ];
@@ -1688,12 +2329,17 @@ export const camundaReservedNameBuiltins = [
     "type": "function",
     "params": [
       {
-        "name": "value"
+        "name": "value",
+        "type": "Any"
       },
       {
-        "name": "default"
+        "name": "default",
+        "type": "Any"
       }
     ],
+    "return": {
+      "type": "Any"
+    },
     "info": "<p><em>Camunda Extension</em></p>\n<p>Return the provided value parameter if not <code>null</code>, otherwise return the default parameter</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">get or else(value: Any, default: Any): Any\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">get or else(&quot;this&quot;, &quot;default&quot;)\n// &quot;this&quot;\n\nget or else(null, &quot;default&quot;)\n// &quot;default&quot;\n\nget or else(null, null)\n// null\n</code></pre>\n"
   }
 ];
