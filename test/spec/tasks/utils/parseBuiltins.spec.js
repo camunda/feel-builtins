@@ -30,6 +30,7 @@ describe('tasks/parseBuiltins', function() {
           name: 'default',
         },
       ],
+      engines: { camunda: '>=8.3' }
     });
   });
 
@@ -52,7 +53,24 @@ describe('tasks/parseBuiltins', function() {
       info: descriptor.description,
       type: 'function',
       params: [],
+      engines: { camunda: '>=8.2' }
     });
+  });
+
+
+  it('should not include engines for unversioned function', function() {
+
+    // given
+    const descriptor = {
+      name: 'not(negand)',
+      description: '<p>Returns the logical negation of the given value.</p>',
+    };
+
+    // when
+    const builtin = parseBuiltin(descriptor);
+
+    // then
+    expect(builtin).to.not.have.property('engines');
   });
 
 });
