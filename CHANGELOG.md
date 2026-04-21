@@ -6,6 +6,10 @@ All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.0
+
+* `FEAT`: add compatible engines metadata ([#27](https://github.com/camunda/feel-builtins/pull/27))
+
 ## 1.1.0
 
 * `FEAT`: update builtins: `is defined` description ([#24](https://github.com/camunda/feel-builtins/pull/24))
