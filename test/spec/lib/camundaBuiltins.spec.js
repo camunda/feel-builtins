@@ -16,7 +16,7 @@ describe('camundaBuiltins', function() {
     // to adjust from chore to feat and do a minor release
 
     // then
-    expect(camundaBuiltins).to.be.an('array').with.length(135);
+    expect(camundaBuiltins).to.be.an('array').with.length(136);
     expect(camundaReservedNameBuiltins).to.be.an('array').with.length(1);
   });
 
