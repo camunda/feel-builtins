@@ -6,6 +6,10 @@ All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.3.0
+
+* `FEAT`: update builtings: add `from base64` ([#31](https://github.com/camunda/feel-builtins/pull/31))
+
 ## 1.2.0
 
 * `FEAT`: add compatible engines metadata ([#27](https://github.com/camunda/feel-builtins/pull/27))
