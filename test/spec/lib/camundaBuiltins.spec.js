@@ -70,6 +70,25 @@ describe('camundaBuiltins', function() {
     });
   });
 
+
+  describe('fromAi', function() {
+
+    it('should document value as a FEEL variable reference in all overloads', function() {
+
+      // given
+      const fromAiOverloads = camundaBuiltins.filter(builtin => builtin.name === 'fromAi');
+
+      // then
+      expect(fromAiOverloads).to.have.length(5);
+
+      for (const overload of fromAiOverloads) {
+        expect(overload.info, `overload with ${(overload.params || []).length} param(s)`)
+          .to.include('FEEL variable reference');
+      }
+    });
+
+  });
+
 });
 
 
