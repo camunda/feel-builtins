@@ -40,7 +40,8 @@ export async function parseMarkdownFile(fileName) {
   const fileContent = await readFile(fileName, 'utf-8');
 
   // camunda-docs is cloned into ./camunda-docs; keep the path from "docs/" onwards
-  const fileRelPath = fileName.replace(/^.*?camunda-docs\//, '');
+  const normalizedFileName = fileName.replace(/\\/g, '/');
+  const fileRelPath = normalizedFileName.replace(/^.*?camunda-docs\//, '');
 
   const marked = new Marked({
     renderer: {
