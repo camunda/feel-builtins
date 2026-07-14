@@ -27,7 +27,7 @@ describe('tasks/markdownParser', function() {
 
       // then
       expect(href).to.eql(
-        'https://docs.camunda.io/docs/components/modeler/feel/builtin-functions/feel-built-in-functions-context/#get-entriescontext'
+        'https://docs.camunda.io/docs/components/modeler/feel/builtin-functions/feel-built-in-functions-context#get-entriescontext'
       );
     });
 
@@ -39,7 +39,7 @@ describe('tasks/markdownParser', function() {
 
       // then
       expect(href).to.eql(
-        'https://docs.camunda.io/docs/components/modeler/feel/builtin-functions/feel-built-in-functions-context/#get-entriescontext'
+        'https://docs.camunda.io/docs/components/modeler/feel/builtin-functions/feel-built-in-functions-context#get-entriescontext'
       );
     });
 
