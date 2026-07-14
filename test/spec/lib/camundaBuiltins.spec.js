@@ -70,6 +70,22 @@ describe('camundaBuiltins', function() {
     });
   });
 
+
+  it('should not include relative documentation links', function() {
+
+    // given
+    const hrefRegex = /href="([^"]+)"/g;
+
+    // then
+    camundaBuiltins.forEach(builtin => {
+      const hrefs = [ ...builtin.info.matchAll(hrefRegex) ].map(match => match[1]);
+
+      hrefs.forEach(href => {
+        expect(href, `<${builtin.name}> info href <${href}>`).to.match(/^https:/);
+      });
+    });
+  });
+
 });
 
 
