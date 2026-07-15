@@ -6,6 +6,11 @@ All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.4.0
+
+* `FEAT`: update builtins - descriptions ([#41](https://github.com/camunda/feel-builtins/pull/41))
+* `FIX`: convert relative camunda-docs links to absolute ([#40](https://github.com/camunda/feel-builtins/issues/40))
+
 ## 1.3.0
 
 * `FEAT`: update builtings: add `from base64` ([#31](https://github.com/camunda/feel-builtins/pull/31))
