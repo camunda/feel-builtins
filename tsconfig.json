@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "lib": [
-      "ES2018"
+      "ES2022"
+    ],
+    "types": [
+      "node",
+      "mocha"
     ],
     "strict": true,
     "checkJs": true,
