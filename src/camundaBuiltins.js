@@ -1711,7 +1711,10 @@ export const camundaExtensions = [
         "name": "value"
       }
     ],
-    "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the given Base64 encoded string decoded to a plain string.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">from base64(value: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">from base64(&quot;RkVFTA==&quot;)\n// &quot;FEEL&quot;\n</code></pre>\n"
+    "info": "<p><em>Camunda Extension</em></p>\n<p>Returns the given Base64 encoded string decoded to a plain string.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">from base64(value: string): string\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">from base64(&quot;RkVFTA==&quot;)\n// &quot;FEEL&quot;\n</code></pre>\n",
+    "engines": {
+      "camunda": ">=8.9"
+    }
   },
   {
     "name": "is blank",
