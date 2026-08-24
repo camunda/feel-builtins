@@ -1,6 +1,6 @@
 {
   "name": "@camunda/feel-builtins",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Collection of builtin Camunda extensions for FEEL",
   "type": "module",
   "sideEffects": false,
