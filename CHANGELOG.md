@@ -6,6 +6,8 @@ All notable changes to [@camunda/feel-builtins](https://github.com/camunda/feel-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FIX`: add `from base64` engines meta-data ([#45](https://github.com/camunda/feel-builtins/pull/45))
+
 ## 1.4.0
 
 * `FEAT`: update builtins - descriptions ([#41](https://github.com/camunda/feel-builtins/pull/41))
