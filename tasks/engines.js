@@ -20,6 +20,7 @@ export const enginesByFunction = {
   'is blank': { camunda: '>=8.8' },
   'partition': { camunda: '>=8.7' },
   'fromAi': { camunda: '>=8.8' },
+  'from base64': { camunda: '>=8.9' },
   'from json': { camunda: '>=8.9' },
   'to json': { camunda: '>=8.9' },
 };
