@@ -1308,7 +1308,7 @@ export const feelBuiltins = [
     "name": "now",
     "type": "function",
     "params": [],
-    "info": "<p>Returns the current date and time including the timezone.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">now(): date and time\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">now()\n// date and time(&quot;2020-07-31T14:27:30@Europe/Berlin&quot;)\n</code></pre>\n"
+    "info": "<p>Returns the current date and time including the timezone.</p>\n<p><strong>Function signature</strong></p>\n<pre><code class=\"language-feel\">now(): date and time\n</code></pre>\n<p><strong>Examples</strong></p>\n<pre><code class=\"language-feel\">now()\n// date and time(&quot;2020-07-31T14:27:30@Europe/Berlin&quot;)\n</code></pre>\n<p>In Camunda, <code>now()</code> uses the default time zone of the cluster. FEEL shows the zone ID after <code>@</code>, for example <code>@Europe/Berlin</code>. If you store the result in a variable, the zone ID is written in brackets after the offset instead, for example <code>2026-09-29T12:31:01.641Z[GMT]</code>, which some ISO 8601 parsers reject. To store the value without the zone ID, convert it to a fixed offset. See <a href=\"https://docs.camunda.io/components/concepts/variables#variable-values\">variable values</a>.</p>\n<pre><code class=\"language-feel\">date and time(now(), &quot;Z&quot;)\n// date and time(&quot;2020-07-31T12:27:30Z&quot;)\n</code></pre>\n"
   },
   {
     "name": "today",
